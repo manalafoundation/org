@@ -1,1190 +1,448 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manala Foundation - Kuwezesha Jamii Kupitia Elimu, Afya na Maendeleo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Manala Foundation - Empowering Better Lives</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        /* === PREMIUM CSS WITH 3D EFFECTS === */
         :root {
-            --primary: #1e5631;
-            --primary-dark: #164523;
-            --primary-light: #2d7a47;
-            --secondary: #4a7c59;
-            --accent: #ff9f43;
-            --accent-dark: #e67e22;
-            --text: #2c3e50;
-            --text-light: #7f8c8d;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --shadow-lg: 0 20px 50px rgba(0,0,0,0.15);
+            --primary-color: #004d99; /* Deep Ocean Blue */
+            --secondary-color: #38a745; /* Clean Green */
+            --accent-color: #ffc107; /* Gold/Yellow */
+            --dark-color: #212529;
+            --light-color: #ffffff;
+            --bg-light: #f4f7f9;
         }
-        
+
+        /* Base Styling */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
-        
-        html {
-            scroll-behavior: smooth;
+
+        body { line-height: 1.6; color: var(--dark-color); background-color: var(--light-color); }
+        .container { width: 90%; max-width: 1200px; margin: auto; overflow: hidden; }
+
+        /* ------------------- HEADER/MENU ------------------- */
+        header { 
+            background: var(--light-color); padding: 15px 0; border-bottom: 4px solid var(--secondary-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
         }
-        
-        body {
-            line-height: 1.7;
-            color: var(--text);
-            background: var(--white);
-            overflow-x: hidden;
-        }
-        
-        /* 3D Background Elements */
-        .bg-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
+        header .logo { float: left; display: flex; align-items: center; }
+        header .logo img { height: 45px; margin-right: 12px; }
+        header .logo h2 { font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--primary-color); font-size: 1.5rem; }
+        header nav { float: right; line-height: 45px; }
+        header nav ul { list-style: none; display: flex; }
+        header nav ul li a { color: var(--dark-color); text-decoration: none; font-weight: 500; padding: 10px 18px; transition: color 0.3s, background-color 0.3s; border-radius: 5px; }
+        header nav ul li a:hover { color: var(--light-color); background-color: var(--primary-color); }
+        .cta-button { background: var(--secondary-color); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-left: 20px; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .cta-button:hover { background: #2e8b57; transform: translateY(-2px); }
+
+        /* ------------------- HERO IMAGE SECTION ------------------- */
+        #hero-video {
+            height: 80vh; 
+            position: relative;
             overflow: hidden;
-        }
-        
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary-light), transparent);
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-        
-        .shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-            background: linear-gradient(45deg, var(--accent), transparent);
-        }
-        
-        .shape:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-        
-        /* Header Styles */
-        .header {
-            background: rgba(30, 86, 49, 0.95);
-            color: var(--white);
-            padding: 1.2rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .header.scrolled {
-            padding: 0.8rem 0;
-            background: rgba(30, 86, 49, 0.98);
-            box-shadow: var(--shadow);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
-            position: relative;
-            z-index: 1001;
-        }
-        
-        .logo::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            bottom: 8px;
-            right: -12px;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-        
-        .nav-menu a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--accent);
-        }
-        
-        /* Hero Section with 3D */
-        .hero {
-            background: linear-gradient(135deg, rgba(30, 86, 49, 0.9) 0%, rgba(44, 122, 71, 0.8) 100%),
-                        url('https://images.unsplash.com/photo-1559027615-17d7e5aa1e29?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding: 0 2rem;
-            position: relative;
-            overflow: hidden;
+            background: url('hero-image-children.jpg') no-repeat center center/cover; 
         }
-        
-        .hero::before {
-            content: '';
+
+        #hero-video .overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay ili text ionekane */
+            z-index: 1;
         }
-        
-        .hero-content {
-            max-width: 900px;
+
+        #hero-video .content {
             position: relative;
             z-index: 2;
-        }
-        
-        .hero-content h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            animation: slideDown 1.2s ease-out;
-            line-height: 1.1;
-        }
-        
-        .hero-tagline {
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            opacity: 0.95;
-            animation: slideUp 1.2s ease-out 0.3s both;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-bottom: 3rem;
-            animation: slideUp 1.2s ease-out 0.6s both;
-        }
-        
-        .stat-item {
             text-align: center;
-            perspective: 1000px;
-        }
-        
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            display: block;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            transform-style: preserve-3d;
-            animation: countUp 2s ease-out;
-        }
-        
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: var(--accent);
-            color: var(--white);
-            padding: 18px 40px;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: slideUp 1.2s ease-out 0.9s both;
-            box-shadow: 0 10px 30px rgba(255, 159, 67, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            background: var(--accent-dark);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 159, 67, 0.4);
-        }
-        
-        /* 3D Card Sections */
-        .section {
-            padding: 120px 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--primary);
-            font-size: 3rem;
-            font-weight: 700;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 6px;
-            background: var(--gradient);
-            margin: 1.5rem auto;
-            border-radius: 3px;
-            transform: perspective(500px) rotateX(45deg);
-        }
-        
-        /* About Section with 3D */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-        
-        .about-text h3 {
-            color: var(--primary);
-            margin-bottom: 2rem;
-            font-size: 2.2rem;
-            font-weight: 600;
-        }
-        
-        .about-text p {
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-        
-        .location-card {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
-            border-left: 6px solid var(--accent);
-            box-shadow: var(--shadow-lg);
-            transform-style: preserve-3d;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .location-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,159,67,0.1) 0%, transparent 50%);
-            z-index: -1;
-        }
-        
-        .location-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-        }
-        
-        .location-card h4 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        /* 3D Programs Section */
-        .programs-section {
-            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
-            position: relative;
-        }
-        
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-        
-        .program-card {
-            background: var(--white);
-            padding: 3rem 2.5rem;
-            border-radius: 25px;
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow);
-            transform-style: preserve-3d;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .program-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-        
-        .program-card:hover {
-            transform: translateY(-15px) rotateY(5deg) scale(1.03);
-            box-shadow: var(--shadow-lg);
-            color: var(--white);
-        }
-        
-        .program-card:hover::before {
-            opacity: 1;
-        }
-        
-        .program-card:hover .program-icon {
-            transform: scale(1.2) rotateY(180deg);
-            color: var(--white);
-        }
-        
-        .program-card:hover h3,
-        .program-card:hover p {
-            color: var(--white);
-        }
-        
-        .program-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            display: block;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-        
-        .program-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        
-        .program-card p {
-            line-height: 1.8;
-            color: var(--text-light);
-            transition: color 0.3s ease;
-        }
-        
-        /* 3D Gallery Section */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-            perspective: 2000px;
-        }
-        
-        .gallery-item {
-            height: 280px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-            box-shadow: var(--shadow);
-        }
-        
-        .gallery-item:hover {
-            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
-        
-        .gallery-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.3rem;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .gallery-placeholder::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-        
-        /* 3D Contact Section */
-        .contact-form {
+            color: white;
             max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 4rem;
-            border-radius: 30px;
-            box-shadow: var(--shadow-lg);
-            transform-style: preserve-3d;
-            position: relative;
-            overflow: hidden;
+            padding: 20px;
+        }
+
+        #hero-video h1 { font-size: 3.8rem; margin-bottom: 15px; font-family: 'Nunito', sans-serif; font-weight: 800; line-height: 1.1; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
+        #hero-video p { font-size: 1.5rem; margin-bottom: 40px; font-weight: 300; }
+        
+        /* ------------------- GENERAL STYLING ------------------- */
+        section { padding: 80px 0; background-color: var(--bg-light); }
+        section:nth-child(even) { background-color: var(--light-color); }
+
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: var(--primary-color); font-family: 'Nunito', sans-serif; font-weight: 700; }
+        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--secondary-color); margin: 10px auto 0; border-radius: 2px; }
+        
+        /* ------------------- BANK DETAILS (DONATION) SECTION ------------------- */
+        #support {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 0;
+        }
+
+        #support .bank-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Info kushoto, Bank Details kulia */
+            gap: 50px;
+            align-items: center;
         }
         
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, var(--accent), transparent, var(--primary), transparent);
-            animation: rotate 10s linear infinite;
-            z-index: -1;
+        #support h2 { color: var(--accent-color); font-size: 2.5rem; margin-bottom: 15px; }
+        #support p { font-size: 1.1rem; margin-bottom: 30px; }
+
+        .bank-box {
+            background: var(--light-color);
+            color: var(--dark-color);
+            padding: 30px;
+            border-radius: 10px;
+            /* Kuongeza kina zaidi kwenye shadow (3D-like effect base) */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3); 
         }
-        
-        .contact-form::after {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            background: var(--white);
-            border-radius: 26px;
-            z-index: -1;
-        }
-        
-        .form-group {
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 18px 20px;
-            border: 2px solid #e8f0fe;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: var(--light);
-            transform-style: preserve-3d;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--white);
-            transform: translateZ(10px);
-            box-shadow: 0 10px 30px rgba(30, 86, 49, 0.1);
-        }
-        
-        /* 3D Footer */
-        .footer {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            color: var(--white);
+
+        .bank-box h3 { 
+            color: var(--secondary-color); 
+            margin-bottom: 25px; 
+            font-size: 1.8rem; 
             text-align: center;
-            padding: 4rem 2rem;
-            margin-top: 6rem;
-            position: relative;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
+        
+        /* Styling ya kuvutia ya benki info */
+        .bank-info-grid {
+            display: grid;
+            gap: 20px; 
+        }
+        .bank-tile {
+            background: var(--bg-light);
+            padding: 20px; 
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        }
+        .bank-tile:hover {
+            transform: translateY(-5px) scale(1.02); /* Lift-up effect */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25); 
+            background: #e3e8ec;
+        }
+        .bank-tile strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .bank-tile span {
+            display: block;
+            font-size: 1.2rem; 
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+        }
+        .bank-tile p.description {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        
+        /* ------------------- IMAGE GALLERY ------------------- */
+        #gallery .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        #gallery .gallery-item {
             overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        #gallery .gallery-item img {
             width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
         }
         
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
+        #gallery .gallery-item img:hover {
+            transform: scale(1.05);
         }
-        
-        .footer h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
+
+        /* ------------------- CONTACT FORM SECTION ------------------- */
+        #contact-us-main { padding: 100px 0; background-color: var(--bg-light); color: var(--dark-color); }
+        #contact-us-main .container { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
+        #contact-us-main .contact-info-col { flex: 1; text-align: left; }
+        #contact-us-main .contact-info-col h2 { font-size: 3rem; margin-bottom: 20px; color: var(--primary-color); } 
+        #contact-us-main .contact-info-col p { font-size: 1.2rem; margin-bottom: 30px; }
+        .contact-detail-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 1.1rem; }
+        .contact-detail-item i { font-size: 1.8rem; color: var(--primary-color); margin-right: 15px; } 
+        #contact-us-main .contact-form-col { flex: 1.2; background: var(--light-color); padding: 35px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); color: var(--dark-color); text-align: left; }
+        .contact-form-col h3 { margin-bottom: 25px; color: var(--secondary-color); font-size: 1.8rem; text-align: center; }
+        .contact-form-col input, .contact-form-col textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; resize: vertical; }
+        .contact-form-col .submit-btn { background: var(--secondary-color); color: white; border: none; cursor: pointer; font-weight: 700; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; width: 100%; transition: background 0.3s, transform 0.2s; }
+        .contact-form-col .submit-btn:hover { background: var(--dark-color); transform: translateY(-2px); }
+
+        /* ------------------- WHATSAPP FLOATING ICON ------------------- */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 1500; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;
         }
+        .whatsapp-float:hover { color: #fff; transform: scale(1.1); }
         
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
+        /* ------------------- FOOTER ------------------- */
+        footer { background: var(--dark-color); color: var(--light-color); padding: 50px 0 20px 0; }
+        footer .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        footer .footer-col { flex-basis: 22%; padding: 0 15px; margin-bottom: 20px; }
+        footer .footer-col h4 { font-family: 'Nunito', sans-serif; color: var(--accent-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; }
+        footer ul { list-style: none; }
+        footer ul li a { color: #ccc; text-decoration: none; line-height: 2; transition: color 0.3s; }
+        footer ul li a:hover { color: var(--secondary-color); }
+        
+        /* --- NEW SOCIAL ICONS STYLING --- */
+        .social-icons { margin-top: 15px; }
+        .social-icons a { 
+            color: var(--light-color); /* White icon */
+            font-size: 1.8rem;
+            margin-right: 15px; /* Space between icons */
+            transition: color 0.3s;
         }
-        
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 1rem;
+        .social-icons a:hover {
+            color: var(--accent-color); /* Change color on hover */
         }
-        
-        .footer-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+        /* --- END NEW SOCIAL ICONS STYLING --- */
+
+        /* ------------------- MEDIA QUERIES (RESPONSIVE) ------------------- */
+        @media (max-width: 992px) {
+            #hero-video { height: 60vh; }
+            #hero-video h1 { font-size: 3rem; }
+            #support .bank-details-grid { 
+                grid-template-columns: 1fr; 
+                gap: 30px;
+            }
+            #gallery .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            #contact-us-main .container { flex-direction: column; }
+            #contact-us-main .contact-info-col, #contact-us-main .contact-form-col { flex: 1; max-width: 100%; }
+            footer .footer-col { flex-basis: 45%; }
         }
-        
-        .footer-links a:hover::before {
-            width: 100%;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-        
-        .copyright {
-            margin-top: 3rem;
-            opacity: 0.8;
-            font-size: 1rem;
-        }
-        
-        /* 3D Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes countUp {
-            from {
-                transform: scale(0.5) rotateX(90deg);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1) rotateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Particle Effects */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .particle {
-            position: absolute;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
-            
-            .about-content {
-                gap: 3rem;
-            }
-            
-            .programs-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                color: white;
-                font-size: 1.8rem;
-                cursor: pointer;
-                z-index: 1001;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1.4rem;
-            }
-            
-            .stats {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .section {
-                padding: 80px 1rem;
-            }
-            
-            .contact-form {
-                padding: 2.5rem 1.5rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
+
+        @media (max-width: 600px) {
+            #hero-video h1 { font-size: 2.2rem; }
+            #gallery .gallery-grid { grid-template-columns: 1fr; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 20px; right: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Background Elements -->
-    <div class="bg-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    
-    <!-- Particle Effects -->
-    <div class="particles" id="particles"></div>
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav-container">
-            <a href="#home" class="logo">MANALA FOUNDATION</a>
-            <ul class="nav-menu">
-                <li><a href="#home">Nyumbani</a></li>
-                <li><a href="#about">Kuhusu Sisi</a></li>
-                <li><a href="#programs">Mipango</a></li>
-                <li><a href="#gallery">Picha</a></li>
-                <li><a href="#contact">Wasiliana</a></li>
-            </ul>
-            <button class="mobile-menu-btn">☰</button>
-        </nav>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="Manala Foundation Logo">
+                <h2>Manala Foundation</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero-video">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact-us-main">Contact</a></li>
+                </ul>
+                <a href="#support" class="cta-button">Support Us</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>MANALA FOUNDATION</h1>
-            <div class="hero-tagline">
-                Shirika Lisilo la Kiserikali<br>
-                Linajitolea Kuwezesha Watu na Jamii
-            </div>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number">24</span>
-                    <span class="stat-label">Posts</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">120</span>
-                    <span class="stat-label">Wafuasi</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">235</span>
-                    <span class="stat-label">Inafuatilia</span>
-                </div>
-            </div>
-            
-            <a href="#contact" class="btn">
-                <span>Jiunge Nasi</span>
-                <span>→</span>
-            </a>
+    <section id="hero-video">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Empowering Communities Through Sustainable Change</h1>
+            <p>Committed to uplifting lives in Shinyanga, Tanzania, through high-impact initiatives in education, healthcare, and economic development.</p>
+            <a href="#support" class="cta-button" style="margin-left: 0; background: var(--accent-color); color: var(--dark-color);">Donate & Support Our Cause</a>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section" id="about">
-        <h2 class="section-title">Kuhusu Manala Foundation</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Historia Yetu na Dhamira</h3>
-                <p><strong>Manala Foundation</strong> ni shirika lisilo la kiserikali (NGO) linalojitolea kuwapa nafasi watu na jamii kupitia mikakati ya elimu, afya na maendeleo ya kiuchumi.</p>
-                <p>Tunaimika katika kijiji cha <strong>Kagongwa, Kata ya Kagongwa, Wilaya ya Kahama, Mkoa wa Shinyanga</strong>. Tunafanya kazi kwa karibu na jamii za Kagongwa, Kahama na maeneo jirani ya Shinyanga, Tanzania.</p>
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Who We Are & What We Do</h2>
+            <div style="display: flex; gap: 40px; align-items: center;">
+                <div style="flex: 2; font-size: 1.1rem; text-align: justify;">
+                    <p>Manala Foundation is a community-driven Non-Governmental Organization (NGO) rooted in Kagongwa, Kahama, Shinyanga, Tanzania. Our core mission is to empower individuals and communities by investing in three critical pillars of development: 
+                        <span style="font-weight: 700;">Education</span>, 
+                        <span style="font-weight: 700;">Health</span>, and 
+                        <span style="font-weight: 700;">Economic Empowerment</span>.
+                    </p>
+                    <p style="margin-top: 15px;"><span style="font-weight: 700;">Vision:</span> To build an educated, healthy, and economically self-sufficient society in Tanzania.</p>
+                    <a href="#contact-us-main" class="cta-button" style="margin-left: 0; margin-top: 20px;">Partner With Us</a>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <i class="fas fa-handshake" style="font-size: 6rem; color: var(--primary-color);"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" style="background-color: var(--light-color);">
+        <div class="container">
+            <h2 class="section-title">Our Core Pillars of Development</h2>
+            <div class="program-grid">
+                <div class="program-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Education</h3>
+                    <p>Building infrastructure, providing school supplies, and offering scholarships to give children and youth the key to a better future.</p>
+                </div>
+                <div class="program-item">
+                    <i class="fas fa-stethoscope"></i>
+                    <h3>Healthcare</h3>
+                    <p>Ensuring access to medical services, essential medicines, and critical health education in rural communities.</p>
+                </div>
+                <div class="program-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Economic Empowerment</h3>
+                    <p>Providing entrepreneurship training and microfinance support for women and youth groups to foster job creation and income generation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Impact Gallery: See Our Work in Action</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="1.jpg" alt="Gallery Image 1"></div>
+                <div class="gallery-item"><img src="2.jpg" alt="Gallery Image 2"></div>
+                <div class="gallery-item"><img src="3.jpg" alt="Gallery Image 3"></div>
+                <div class="gallery-item"><img src="4.jpg" alt="Gallery Image 4"></div>
+                <div class="gallery-item"><img src="5.jpg" alt="Gallery Image 5"></div>
+                <div class="gallery-item"><img src="6.jpg" alt="Gallery Image 6"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="support">
+        <div class="container bank-details-grid">
+            <div class="support-info">
+                <h2>Support Our Transformative Work</h2>
+                <p>Your contribution directly funds education, health, and economic development initiatives in the Shinyanga region. Partner with us to create a lasting legacy of hope.</p>
+                <a href="#contact-us-main" class="cta-button" style="background: var(--accent-color); color: var(--dark-color); margin-left: 0;">Inquire About Partnership</a>
+            </div>
+            <div class="bank-box">
+                <h3>Official Donation Details</h3>
+                <div class="bank-info-grid">
+                    <div class="bank-tile">
+                        <strong>Bank Name</strong>
+                        <span>Tanzania Commercial Bank</span>
+                        <p class="description">Your contributions are securely processed through TCB, a trusted financial institution in Tanzania.</p>
+                    </div>
+                    <div class="bank-tile">
+                        <strong>Account Name</strong>
+                        <span>Manala Foundation</span>
+                        <p class="description">Ensure the name matches exactly to guarantee your donation reaches us.</p>
+                    </div>
+                    <div class="bank-tile">
+                        <strong>Account Number</strong>
+                        <span>172405000010</span>
+                        <p class="description">Use this unique identifier for all direct bank transfers to Manala Foundation.</p>
+                    </div>
+                    <div class="bank-tile">
+                        <strong>SWIFT/BIC Code</strong>
+                        <span>(Consult your bank for international transfers)</span>
+                        <p class="description">Required for all international wire transfers. Please verify with your bank.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us-main" style="background-color: var(--bg-light); color: var(--dark-color);">
+        <div class="container">
+            <div class="contact-info-col" style="color: var(--dark-color);">
+                <h2 style="color: var(--primary-color);">Let's Start a Conversation!</h2>
+                <p>Have a question, a project proposal, or wish to volunteer? Reach out directly. We welcome all forms of collaboration.</p>
                 
-                <div class="location-card">
-                    <h4>📍 Eneo Tulipo</h4>
-                    <p><strong>Kagongwa, Kahama, Shinyanga, Tanzania</strong></p>
-                    <p>🔍 <strong>www.manalafnd.org</strong> na zaidi</p>
+                <div class="contact-detail-item">
+                    <i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i>
+                    <span>Kagongwa, Kahama, Shinyanga, Tanzania</span>
+                </div>
+                <div class="contact-detail-item">
+                    <i class="fas fa-envelope" style="color: var(--primary-color);"></i>
+                    <span>info@manalafoundation.org (example)</span>
+                </div>
+                <div class="contact-detail-item">
+                    <i class="fas fa-phone-alt" style="color: var(--primary-color);"></i>
+                    <span>+255 765 374 146</span>
                 </div>
             </div>
-            <div class="about-text">
-                <h3>Msingi wa Mwaka 2024</h3>
-                <p>Manala Foundation ilianzishwa mwaka 2024 kwa lengo la kuleta mabadiliko chanya katika jamii za Tanzania kupitia mikakati ya kudumu na endelevu.</p>
-                <p>Tunaamini katika uwezo wa kila mtu na jamii kujikomboa kiuchumi na kijamii. Lengo letu kuu ni kuweka msingi imara kwa ajili ya maendeleo endelevu ya jamii zetu.</p>
+            
+            <div class="contact-form-col">
+                <h3>Send Us a Message</h3>
+                <form action="YOUR_BACKEND_SCRIPT_URL" method="POST">
+                    <input type="text" placeholder="Full Name *" required>
+                    <input type="email" placeholder="Email Address *" required>
+                    <input type="tel" placeholder="Phone Number (WhatsApp)" required>
+                    <textarea placeholder="Write Your Message Here..." rows="5" required></textarea>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <p style="margin-top: 15px; font-size: 0.9rem; text-align: center; color: #6c757d;">We aim to respond within 48 hours.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <a 
+        href="https://wa.me/255765374146?text=Hello%20Manala%20Foundation,%20I%20would%20like%20to%20partner%20with%20you%20regarding..." 
+        class="whatsapp-float" 
+        target="_blank" 
+        title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Manala Foundation</h4>
+                    <p>Committed to creating positive and lasting change in the lives of Tanzanians.</p>
+                </div>
                 
-                <h3>Mikakati Yetu</h3>
-                <p>• <strong>Elimu:</strong> Kuweka msingi wa elimu bora kwa watoto na vijana</p>
-                <p>• <strong>Afya:</strong> Kuboresha upatikanaji wa huduma za kiafya</p>
-                <p>• <strong>Uchumi:</strong> Kuwawezesha wananchi kupitia mafunzo ya ujuzi</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programs Section -->
-    <section class="section programs-section" id="programs">
-        <h2 class="section-title">Mipango Yetu</h2>
-        <div class="programs-grid">
-            <div class="program-card">
-                <span class="program-icon">📚</span>
-                <h3>Elimu na Mafunzo</h3>
-                <p>Kuweka msingi wa elimu bora kwa watoto na vijana. Tunatoa mafunzo ya ujuzi wa maisha na kitaaluma kwa ajili ya maendeleo ya jamii.</p>
-            </div>
-            <div class="program-card">
-                <span class="program-icon">🏥</span>
-                <h3>Afya na Usafi</h3>
-                <p>Kuhakikisha upatikanaji wa huduma za kiafya kwa jamii zote. Tunatoa programu za tiba za bure na kampeni za usafi wa mazingira.</p>
-            </div>
-            <div class="program-card">
-                <span class="program-icon">💼</span>
-                <h3>Maendeleo ya Kiuchumi</h3>
-                <p>Kuwawezesha wananchi kupitia mafunzo ya ujuzi wa kibiashara na mikopo midogo ya kuendesha biashara ndogo ndogo.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="section" id="gallery">
-        <h2 class="section-title">Picha za Matukio na Miradi</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Picha ya Miradi Yetu</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Picha ya Jamii</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Picha ya Matukio</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Picha ya Mafanikio</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <h2 class="section-title">Wasiliana Nasi</h2>
-        <div class="contact-form">
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Jina Kamili</label>
-                    <input type="text" id="name" placeholder="Andika jina lako kamili" required>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">Our Team</a></li>
+                        <li><a href="#programs">Our Programs</a></li>
+                        <li><a href="#support">Support Us</a></li>
+                    </ul>
                 </div>
-                <div class="form-group">
-                    <label for="email">Barua Pepe</label>
-                    <input type="email" id="email" placeholder="andika@baruapepe.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Namba ya Simu</label>
-                    <input type="tel" id="phone" placeholder="+255 ...">
-                </div>
-                <div class="form-group">
-                    <label for="message">Ujumbe Wako</label>
-                    <textarea id="message" placeholder="Andika ujumbe wako hapa..." rows="6" required></textarea>
-                </div>
-                <button type="submit" class="btn">Tuma Ujumbe</button>
-            </form>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <h3>Manala Foundation</h3>
-            <p>Kuwezesha Watu na Jamii Kupitia Elimu, Afya na Maendeleo ya Kiuchumi</p>
-            
-            <div class="footer-links">
-                <a href="#home">Nyumbani</a>
-                <a href="#about">Kuhusu Sisi</a>
-                <a href="#programs">Mipango</a>
-                <a href="#gallery">Picha</a>
-                <a href="#contact">Wasiliana</a>
+                <div class="footer-col">
+                    <h4>Contact Channels</h4>
+                    <ul>
+                        <li><a href="https://wa.me/255765374146" target="_blank">WhatsApp: +255 765 374 146</a></li>
+                        </ul>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/manala_foundation1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="URL_YA_FACEBOOK" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Location</h4>
+                    <p>Kagongwa, Kahama, Shinyanga, Tanzania.</p>
+                    <p style="margin-top: 10px;">Domain: manalafoundation.org</p>
+                </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2024 Manala Foundation. Haki zote zimehifadhiwa.</p>
-                <p>Kagongwa, Kahama, Shinyanga, Tanzania | www.manalafnd.org</p>
-            </div>
+            <p style="text-align: center; margin-top: 40px; border-top: 1px solid #3a3e42; padding-top: 20px;">&copy; 2025 Manala Foundation. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <!-- === PREMIUM JAVASCRIPT WITH 3D EFFECTS === -->
-    <script>
-        // Enhanced 3D Animations and Effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Header scroll effect
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Smooth scrolling with offset
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerHeight = header.offsetHeight;
-                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Mobile menu functionality
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                const isOpen = navMenu.style.display === 'flex';
-                
-                if (isOpen) {
-                    navMenu.style.display = 'none';
-                    mobileMenuBtn.innerHTML = '☰';
-                } else {
-                    navMenu.style.display = 'flex';
-                    navMenu.style.flexDirection = 'column';
-                    navMenu.style.position = 'absolute';
-                    navMenu.style.top = '100%';
-                    navMenu.style.left = '0';
-                    navMenu.style.right = '0';
-                    navMenu.style.background = 'rgba(30, 86, 49, 0.98)';
-                    navMenu.style.backdropFilter = 'blur(20px)';
-                    navMenu.style.padding = '2rem';
-                    navMenu.style.gap = '1.5rem';
-                    mobileMenuBtn.innerHTML = '✕';
-                }
-            });
-
-            // Contact form handling
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const formData = {
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    message: document.getElementById('message').value
-                };
-                
-                // Simulate form submission
-                console.log('Form submitted:', formData);
-                
-                // Show success message with animation
-                const btn = this.querySelector('.btn');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '✓ Imetumwa!';
-                btn.style.background = '#27ae60';
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = '';
-                    this.reset();
-                }, 3000);
-            });
-
-            // Intersection Observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe elements for animation
-            document.querySelectorAll('.section, .program-card, .gallery-item').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s ease-out';
-                observer.observe(el);
-            });
-
-            // Particle effect
-            function createParticles() {
-                const particlesContainer = document.getElementById('particles');
-                const particleCount = 30;
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    
-                    // Random properties
-                    const size = Math.random() * 6 + 2;
-                    const posX = Math.random() * 100;
-                    const posY = Math.random() * 100;
-                    const delay = Math.random() * 5;
-                    const duration = Math.random() * 10 + 5;
-                    
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${posX}%`;
-                    particle.style.top = `${posY}%`;
-                    particle.style.animationDelay = `${delay}s`;
-                    particle.style.animationDuration = `${duration}s`;
-                    particle.style.opacity = Math.random() * 0.3 + 0.1;
-                    
-                    particlesContainer.appendChild(particle);
-                }
-            }
-
-            // Create particles on load
-            createParticles();
-
-            // 3D tilt effect for cards
-            function initTiltEffect() {
-                const cards = document.querySelectorAll('.program-card, .location-card');
-                
-                cards.forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
-                        
-                        const rotateY = (x - centerX) / 25;
-                        const rotateX = (centerY - y) / 25;
-                        
-                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-                    });
-                    
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                    });
-                });
-            }
-
-            initTiltEffect();
-
-            // Counter animation for stats
-            function animateCounters() {
-                const counters = document.querySelectorAll('.stat-number');
-                const speed = 200;
-                
-                counters.forEach(counter => {
-                    const target = +counter.innerText;
-                    const count = +counter.innerText;
-                    const increment = target / speed;
-                    
-                    let current = 0;
-                    
-                    const updateCount = () => {
-                        if (current < target) {
-                            current += increment;
-                            counter.innerText = Math.ceil(current);
-                            setTimeout(updateCount, 1);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    
-                    updateCount();
-                });
-            }
-            
-            // Start counter animation when stats section is visible
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        statsObserver.unobserve(entry.target);
-                    }
-                });
-            });
-            
-            const statsSection = document.querySelector('.hero');
-            statsObserver.observe(statsSection);
-        });
-
-        // Parallax effect for background shapes
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const shapes = document.querySelectorAll('.shape');
-            
-            shapes.forEach((shape, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(scrolled * speed);
-                shape.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
-            });
-        });
-
-        // Responsive menu adjustment
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                const navMenu = document.querySelector('.nav-menu');
-                navMenu.style.display = 'flex';
-                navMenu.style.position = 'static';
-                navMenu.style.background = 'transparent';
-                navMenu.style.padding = '0';
-                navMenu.style.flexDirection = 'row';
-            } else {
-                const navMenu = document.querySelector('.nav-menu');
-                if (!navMenu.style.display || navMenu.style.display === 'flex') {
-                    navMenu.style.display = 'none';
-                }
-            }
-        });
-    </script>
 </body>
 </html>
