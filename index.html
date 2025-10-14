@@ -25,7 +25,18 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        body { line-height: 1.6; color: var(--dark-color); background-color: var(--light-color); }
+        /* GLOBAL ANIMATION: FADE-IN ON LOAD */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body { 
+            line-height: 1.6; 
+            color: var(--dark-color); 
+            background-color: var(--light-color); 
+            animation: fadeIn 1.5s ease-out both; /* Athari ya kufunguka kwa website nzima */
+        }
         .container { width: 90%; max-width: 1200px; margin: auto; overflow: hidden; }
 
         /* ------------------- HEADER/MENU ------------------- */
@@ -39,27 +50,58 @@
         header nav ul { list-style: none; display: flex; }
         header nav ul li a { color: var(--dark-color); text-decoration: none; font-weight: 500; padding: 10px 18px; transition: color 0.3s, background-color 0.3s; border-radius: 5px; }
         header nav ul li a:hover { color: var(--light-color); background-color: var(--primary-color); }
-        .cta-button { background: var(--secondary-color); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-left: 20px; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
-        .cta-button:hover { background: #2e8b57; transform: translateY(-2px); }
+        .cta-button { 
+            background: var(--secondary-color); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-left: 20px; 
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        }
+        .cta-button:hover { 
+            background: #2e8b57; 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
 
-        /* ------------------- HERO IMAGE SECTION ------------------- */
+        /* ------------------- HERO IMAGE SECTION (SLIDING BACKGROUND) ------------------- */
         #hero-video {
-            height: 80vh; 
+            height: 85vh; /* Urefu uliorekebishwa */
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url('hero-image-children.jpg') no-repeat center center/cover; 
+            background: #000; 
         }
 
+        .slide-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slide-container .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0; 
+            /* Transition kwa ajili ya kufifia kwa picha */
+            transition: opacity 1.5s ease-in-out; 
+            will-change: opacity; 
+        }
+        
         #hero-video .overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay ili text ionekane */
+            background: rgba(0, 0, 0, 0.6); 
             z-index: 1;
         }
 
@@ -81,123 +123,132 @@
 
         .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: var(--primary-color); font-family: 'Nunito', sans-serif; font-weight: 700; }
         .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--secondary-color); margin: 10px auto 0; border-radius: 2px; }
-        
-        /* ------------------- BANK DETAILS (DONATION) SECTION ------------------- */
-        #support {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 80px 0;
-        }
 
-        #support .bank-details-grid {
+        /* Program Items with 3D Hover Effect */
+        .program-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Info kushoto, Bank Details kulia */
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
         }
-        
-        #support h2 { color: var(--accent-color); font-size: 2.5rem; margin-bottom: 15px; }
-        #support p { font-size: 1.1rem; margin-bottom: 30px; }
-
-        .bank-box {
+        .program-item {
             background: var(--light-color);
-            color: var(--dark-color);
             padding: 30px;
             border-radius: 10px;
-            /* Kuongeza kina zaidi kwenye shadow (3D-like effect base) */
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3); 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border-left: 6px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .program-item:hover {
+            transform: translateY(-8px) scale(1.02); /* Kuinuka na Kukua kidogo */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
-        .bank-box h3 { 
-            color: var(--secondary-color); 
-            margin-bottom: 25px; 
-            font-size: 1.8rem; 
-            text-align: center;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
+        /* Successes Section Accordion Styling - Imewachwa */
+        #successes {
+            padding: 60px 0;
+            background-color: var(--light-color);
         }
-        
-        /* Styling ya kuvutia ya benki info */
-        .bank-info-grid {
-            display: grid;
-            gap: 20px; 
+        .success-accordion-container {
+            max-width: 900px;
+            margin: auto;
         }
-        .bank-tile {
-            background: var(--bg-light);
-            padding: 20px; 
+        .success-item {
+            border: 1px solid #ddd;
             border-radius: 8px;
-            border-left: 5px solid var(--secondary-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .bank-tile:hover {
-            transform: translateY(-5px) scale(1.02); /* Lift-up effect */
-            box-shadow: 0 12px 25px rgba(0,0,0,0.25); 
-            background: #e3e8ec;
-        }
-        .bank-tile strong {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        .bank-tile span {
-            display: block;
-            font-size: 1.2rem; 
+        .success-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.4rem;
             font-family: 'Nunito', sans-serif;
             font-weight: 700;
+            transition: background 0.3s;
         }
-        .bank-tile p.description {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 8px;
-            line-height: 1.4;
+        .success-header:hover {
+            background: #003a73;
         }
-        
-        /* ------------------- IMAGE GALLERY ------------------- */
-        #gallery .gallery-grid {
+        .success-header i {
+            transition: transform 0.3s;
+        }
+        .success-header.active i {
+            transform: rotate(180deg);
+        }
+        .success-content {
+            padding: 0 25px;
+            background: var(--bg-light);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .success-content.open {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        .success-content h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .success-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        .success-image-box {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .success-image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* ------------------- IMPACT GALLERY - NEW UNIQUE 3D STYLE ------------------- */
+        #gallery {
+            padding: 100px 0;
+            background-color: var(--bg-light);
+        }
+        .gallery-grid-unique {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 30px;
+            perspective: 1000px; /* Kuwezesha 3D effect */
         }
-        
-        #gallery .gallery-item {
+        .gallery-item-unique {
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
         }
-
-        #gallery .gallery-item img {
+        .gallery-item-unique img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s;
+            height: 300px; /* Funga urefu wa picha */
+            object-fit: cover; /* Hakikisha picha inajaza nafasi */
+            display: block;
+            transition: transform 0.6s ease;
         }
-        
-        #gallery .gallery-item img:hover {
-            transform: scale(1.05);
+        /* 3D Hover Effect */
+        .gallery-item-unique:hover {
+            /* Picha inajigonga mbele, inakua kidogo, na kupinda kidogo kwenye Y axis */
+            transform: rotateY(5deg) scale(1.05) translateZ(30px); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            z-index: 10; 
         }
-
-        /* ------------------- CONTACT FORM SECTION ------------------- */
-        #contact-us-main { padding: 100px 0; background-color: var(--bg-light); color: var(--dark-color); }
-        #contact-us-main .container { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
-        #contact-us-main .contact-info-col { flex: 1; text-align: left; }
-        #contact-us-main .contact-info-col h2 { font-size: 3rem; margin-bottom: 20px; color: var(--primary-color); } 
-        #contact-us-main .contact-info-col p { font-size: 1.2rem; margin-bottom: 30px; }
-        .contact-detail-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 1.1rem; }
-        .contact-detail-item i { font-size: 1.8rem; color: var(--primary-color); margin-right: 15px; } 
-        #contact-us-main .contact-form-col { flex: 1.2; background: var(--light-color); padding: 35px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); color: var(--dark-color); text-align: left; }
-        .contact-form-col h3 { margin-bottom: 25px; color: var(--secondary-color); font-size: 1.8rem; text-align: center; }
-        .contact-form-col input, .contact-form-col textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; resize: vertical; }
-        .contact-form-col .submit-btn { background: var(--secondary-color); color: white; border: none; cursor: pointer; font-weight: 700; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; width: 100%; transition: background 0.3s, transform 0.2s; }
-        .contact-form-col .submit-btn:hover { background: var(--dark-color); transform: translateY(-2px); }
-
-        /* ------------------- WHATSAPP FLOATING ICON ------------------- */
-        .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 1500; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;
+        .gallery-item-unique:hover img {
+            transform: scale(1.1); /* Zoom kidogo kwa picha ndani */
         }
-        .whatsapp-float:hover { color: #fff; transform: scale(1.1); }
+        /* ------------------- END GALLERY ------------------- */
         
         /* ------------------- FOOTER ------------------- */
         footer { background: var(--dark-color); color: var(--light-color); padding: 50px 0 20px 0; }
@@ -208,36 +259,50 @@
         footer ul li a { color: #ccc; text-decoration: none; line-height: 2; transition: color 0.3s; }
         footer ul li a:hover { color: var(--secondary-color); }
         
-        /* --- NEW SOCIAL ICONS STYLING --- */
-        .social-icons { margin-top: 15px; }
-        .social-icons a { 
-            color: var(--light-color); /* White icon */
-            font-size: 1.8rem;
-            margin-right: 15px; /* Space between icons */
+        /* KVTC Integration Style */
+        .kvtc-integration {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #3a3e42;
+        }
+        .kvtc-integration a {
+            display: inline-flex;
+            align-items: center;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.95rem;
             transition: color 0.3s;
         }
-        .social-icons a:hover {
-            color: var(--accent-color); /* Change color on hover */
+        .kvtc-integration a:hover {
+            color: var(--secondary-color);
         }
-        /* --- END NEW SOCIAL ICONS STYLING --- */
+        .kvtc-integration img {
+            height: 30px;
+            margin-right: 8px;
+            border-radius: 5px;
+        }
+        .kvtc-integration span {
+            font-weight: 600;
+        }
+        /* ... CSS nyingine za footer ... */
 
         /* ------------------- MEDIA QUERIES (RESPONSIVE) ------------------- */
         @media (max-width: 992px) {
-            #hero-video { height: 60vh; }
+            #hero-video { height: 65vh; }
             #hero-video h1 { font-size: 3rem; }
-            #support .bank-details-grid { 
-                grid-template-columns: 1fr; 
-                gap: 30px;
-            }
-            #gallery .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .program-grid { grid-template-columns: repeat(2, 1fr); }
+            .value-grid { grid-template-columns: 1fr; }
+            .gallery-grid-unique { grid-template-columns: 1fr; } /* Gallery inakuwa 1 column kwenye simu */
             #contact-us-main .container { flex-direction: column; }
             #contact-us-main .contact-info-col, #contact-us-main .contact-form-col { flex: 1; max-width: 100%; }
             footer .footer-col { flex-basis: 45%; }
+            .success-header { font-size: 1.2rem; }
         }
 
         @media (max-width: 600px) {
             #hero-video h1 { font-size: 2.2rem; }
-            #gallery .gallery-grid { grid-template-columns: 1fr; }
+            .program-grid { grid-template-columns: 1fr; }
             .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 20px; right: 20px; }
         }
     </style>
@@ -255,116 +320,142 @@
                     <li><a href="#hero-video">Home</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#programs">Programs</a></li>
+                    <li><a href="#successes">Impact</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#contact-us-main">Contact</a></li>
                 </ul>
-                <a href="#support" class="cta-button">Support Us</a>
+                <a href="#contact-us-main" class="cta-button">Partner With Us</a>
             </nav>
         </div>
     </header>
 
     <section id="hero-video">
+        <div class="slide-container">
+            <div class="slide" style="background-image: url('1.jpg'); opacity: 1;"></div> 
+            <div class="slide" style="background-image: url('2.jpg');"></div>
+            <div class="slide" style="background-image: url('3.jpg');"></div>
+        </div>
+
         <div class="overlay"></div>
         <div class="content">
             <h1>Empowering Communities Through Sustainable Change</h1>
             <p>Committed to uplifting lives in Shinyanga, Tanzania, through high-impact initiatives in education, healthcare, and economic development.</p>
-            <a href="#support" class="cta-button" style="margin-left: 0; background: var(--accent-color); color: var(--dark-color);">Donate & Support Our Cause</a>
+            <a href="#contact-us-main" class="cta-button" style="margin-left: 0; background: var(--accent-color); color: var(--dark-color);">Contact & Partner</a>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">Who We Are & What We Do</h2>
-            <div style="display: flex; gap: 40px; align-items: center;">
-                <div style="flex: 2; font-size: 1.1rem; text-align: justify;">
-                    <p>Manala Foundation is a community-driven Non-Governmental Organization (NGO) rooted in Kagongwa, Kahama, Shinyanga, Tanzania. Our core mission is to empower individuals and communities by investing in three critical pillars of development: 
-                        <span style="font-weight: 700;">Education</span>, 
-                        <span style="font-weight: 700;">Health</span>, and 
-                        <span style="font-weight: 700;">Economic Empowerment</span>.
-                    </p>
-                    <p style="margin-top: 15px;"><span style="font-weight: 700;">Vision:</span> To build an educated, healthy, and economically self-sufficient society in Tanzania.</p>
-                    <a href="#contact-us-main" class="cta-button" style="margin-left: 0; margin-top: 20px;">Partner With Us</a>
-                </div>
-                <div style="flex: 1; text-align: center;">
-                    <i class="fas fa-handshake" style="font-size: 6rem; color: var(--primary-color);"></i>
+            <h2 class="section-title">Who We Are & Our Foundation</h2>
+            <div style="font-size: 1.1rem; text-align: justify;">
+                <p>Manala Foundation is a not-for-profit, non-governmental organization founded in May 2022 and officially registered in 26th July 2024 by the Tanzanian Ministry of Community Development, Gender, Women, and Special Groups. The organization is committed to empowering individuals and communities through education, healthcare, and economic development initiatives. By fostering collaboration and innovation, we aim to address systemic challenges and create positive lasting change.</p>
+                
+                <h3 style="color: var(--primary-color); margin-top: 30px; font-size: 1.5rem;">Our Core Identity</h3>
+
+                <div class="value-grid">
+                    <div class="value-item">
+                        <h4>Vision</h4>
+                        <p>A thriving and equitable community where every individual enjoys access to **education, healthcare, and sustainable livelihoods**.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Mission</h4>
+                        <p>Committed to empowering individuals and communities through **education, healthcare, and economic development** initiatives, fostering collaboration and innovation.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Values</h4>
+                        <p>Guided by principles of **Transformation, Effectiveness, Excellence, Relationality, Empowerment, and Passion** in all our work.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="programs" style="background-color: var(--light-color);">
+    <section id="programs" style="background-color: var(--bg-light);">
         <div class="container">
             <h2 class="section-title">Our Core Pillars of Development</h2>
             <div class="program-grid">
+                
                 <div class="program-item">
                     <i class="fas fa-graduation-cap"></i>
                     <h3>Education</h3>
-                    <p>Building infrastructure, providing school supplies, and offering scholarships to give children and youth the key to a better future.</p>
+                    <p>Focusing on **literacy, numeracy, and vocational skills training** to provide children and youth with the key to a better future.</p>
                 </div>
                 <div class="program-item">
                     <i class="fas fa-stethoscope"></i>
                     <h3>Healthcare</h3>
-                    <p>Ensuring access to medical services, essential medicines, and critical health education in rural communities.</p>
+                    <p>Ensuring access to medical services, **health education, and preventive care** in rural communities to improve well-being.</p>
                 </div>
                 <div class="program-item">
                     <i class="fas fa-chart-line"></i>
-                    <h3>Economic Empowerment</h3>
-                    <p>Providing entrepreneurship training and microfinance support for women and youth groups to foster job creation and income generation.</p>
+                    <h3>Economic Development</h3>
+                    <p>Promoting **entrepreneurship, microfinance, and sustainable agriculture** for women and youth groups to foster job creation and income generation.</p>
+                </div>
+                <div class="program-item" style="border-left-color: var(--primary-color);">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Environmental Sustainability</h3>
+                    <p>Dedicated to **conservation and resource management** through community education and practical activities like tree planting.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="gallery">
+    <section id="successes" style="background-color: var(--light-color);">
+        <div class="container">
+            <h2 class="section-title">Our Impact and Key Projects</h2>
+            <div class="success-accordion-container">
+                
+                <div class="success-item">
+                    <div class="success-header active">
+                        <span style="display: flex; align-items: center;"><i class="fas fa-heartbeat" style="margin-right: 15px; font-size: 1.5rem;"></i> January 2024: Health Support Initiative</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="success-content open">
+                        <h4>Health Insurance for Vulnerable Children (Kahama)</h4>
+                        <p>In January 2024, the Manala Foundation successfully implemented a health support initiative aimed at improving the well-being of vulnerable children in Kahama. The Foundation provided **comprehensive health insurance coverage to 60 orphans** residing at the Mwime Orphanage Centre. This intervention ensures that the children will have timely access to quality healthcare services, reducing the risks associated with untreated illnesses and medical emergencies.</p>
+                        <p>This program strengthens the overall welfare of the orphans and supports the orphanage in meeting the needs of the children under its care, reflecting our dedication to lasting impact through health and community empowerment.</p>
+                        <div class="success-image-box">
+                            <img src="picha1.jpg" alt="Health Support Initiative">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="success-item">
+                    <div class="success-header">
+                        <span style="display: flex; align-items: center;"><i class="fas fa-book-reader" style="margin-right: 15px; font-size: 1.5rem;"></i> April 2024: Scholarship Support Program</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="success-content">
+                        <h4>Uplifting Students from Economically Disadvantaged Households</h4>
+                        <p>In April 2024, the Manala Foundation successfully implemented its scholarship support program. A total of **12 low-income households benefited**, ensuring their children could continue pursuing education without the burden of financial hardship. The scholarship specifically supported students enrolled at **Nyandekwa Secondary School** and **Isagehe Secondary School**.</p>
+                        <p>The assistance covered essential school-related expenses, enabling the students to attend classes consistently and focus on their academic goals. This intervention reflects the Foundation’s ongoing commitment to promoting equal access to quality education and breaking the cycle of poverty through empowerment.</p>
+                        <div class="success-image-box">
+                            <img src="picha2.jpg" alt="Scholarship Support Program">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" style="background-color: var(--bg-light);">
         <div class="container">
             <h2 class="section-title">Impact Gallery: See Our Work in Action</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="1.jpg" alt="Gallery Image 1"></div>
-                <div class="gallery-item"><img src="2.jpg" alt="Gallery Image 2"></div>
-                <div class="gallery-item"><img src="3.jpg" alt="Gallery Image 3"></div>
-                <div class="gallery-item"><img src="4.jpg" alt="Gallery Image 4"></div>
-                <div class="gallery-item"><img src="5.jpg" alt="Gallery Image 5"></div>
-                <div class="gallery-item"><img src="6.jpg" alt="Gallery Image 6"></div>
+            <div class="gallery-grid-unique">
+                <div class="gallery-item-unique">
+                    <img src="gallery1.jpg" alt="Gallery Image 1 - Education Support">
+                </div>
+                <div class="gallery-item-unique">
+                    <img src="gallery2.jpg" alt="Gallery Image 2 - Community Health">
+                </div>
+                <div class="gallery-item-unique">
+                    <img src="gallery3.jpg" alt="Gallery Image 3 - Environmental Project">
+                </div>
             </div>
         </div>
     </section>
     
-    <section id="support">
-        <div class="container bank-details-grid">
-            <div class="support-info">
-                <h2>Support Our Transformative Work</h2>
-                <p>Your contribution directly funds education, health, and economic development initiatives in the Shinyanga region. Partner with us to create a lasting legacy of hope.</p>
-                <a href="#contact-us-main" class="cta-button" style="background: var(--accent-color); color: var(--dark-color); margin-left: 0;">Inquire About Partnership</a>
-            </div>
-            <div class="bank-box">
-                <h3>Official Donation Details</h3>
-                <div class="bank-info-grid">
-                    <div class="bank-tile">
-                        <strong>Bank Name</strong>
-                        <span>Tanzania Commercial Bank</span>
-                        <p class="description">Your contributions are securely processed through TCB, a trusted financial institution in Tanzania.</p>
-                    </div>
-                    <div class="bank-tile">
-                        <strong>Account Name</strong>
-                        <span>Manala Foundation</span>
-                        <p class="description">Ensure the name matches exactly to guarantee your donation reaches us.</p>
-                    </div>
-                    <div class="bank-tile">
-                        <strong>Account Number</strong>
-                        <span>172405000010</span>
-                        <p class="description">Use this unique identifier for all direct bank transfers to Manala Foundation.</p>
-                    </div>
-                    <div class="bank-tile">
-                        <strong>SWIFT/BIC Code</strong>
-                        <span>(Consult your bank for international transfers)</span>
-                        <p class="description">Required for all international wire transfers. Please verify with your bank.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact-us-main" style="background-color: var(--bg-light); color: var(--dark-color);">
+    <section id="contact-us-main" style="background-color: var(--light-color); color: var(--dark-color);">
         <div class="container">
             <div class="contact-info-col" style="color: var(--dark-color);">
                 <h2 style="color: var(--primary-color);">Let's Start a Conversation!</h2>
@@ -376,11 +467,15 @@
                 </div>
                 <div class="contact-detail-item">
                     <i class="fas fa-envelope" style="color: var(--primary-color);"></i>
-                    <span>info@manalafoundation.org (example)</span>
+                    <span>info@manalafnd.org</span>
                 </div>
                 <div class="contact-detail-item">
                     <i class="fas fa-phone-alt" style="color: var(--primary-color);"></i>
-                    <span>+255 765 374 146</span>
+                    <span>+255 760 244 679</span>
+                </div>
+                <div class="contact-detail-item">
+                    <i class="fas fa-file-alt" style="color: var(--primary-color);"></i>
+                    <span>Registration No: 00NGO/R/7079 (since 26/07/2024)</span>
                 </div>
             </div>
             
@@ -418,9 +513,10 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#about">Our Team</a></li>
-                        <li><a href="#programs">Our Programs</a></li>
-                        <li><a href="#support">Support Us</a></li>
+                        <li><a href="#about">Our Foundation</a></li>
+                        <li><a href="#programs">Core Pillars</a></li>
+                        <li><a href="#successes">Impact Stories</a></li>
+                        <li><a href="#contact-us-main">Partner With Us</a></li>
                     </ul>
                 </div>
 
@@ -428,7 +524,9 @@
                     <h4>Contact Channels</h4>
                     <ul>
                         <li><a href="https://wa.me/255765374146" target="_blank">WhatsApp: +255 765 374 146</a></li>
-                        </ul>
+                        <li>Email: info@manalafnd.org</li>
+                        <li>Mobile: +255 760 244 679</li>
+                    </ul>
                     <div class="social-icons">
                         <a href="https://www.instagram.com/manala_foundation1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="URL_YA_FACEBOOK" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -436,13 +534,76 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4>Location</h4>
-                    <p>Kagongwa, Kahama, Shinyanga, Tanzania.</p>
-                    <p style="margin-top: 10px;">Domain: manalafoundation.org</p>
+                    <h4>Leadership & Address</h4>
+                    <p><strong>Chairperson:</strong> Dr. Manala Mbumba</p>
+                    <p style="margin-top: 5px;"><strong>Chair Email:</strong> mtmbumba@gmail.com</p>
+                    <p style="margin-top: 15px;">Kagongwa, Kahama, Shinyanga.</p>
+                    <p style="margin-top: 5px;">Registration No: 00NGO/R/7079</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 40px; border-top: 1px solid #3a3e42; padding-top: 20px;">&copy; 2025 Manala Foundation. All Rights Reserved.</p>
+
+            <div class="kvtc-integration">
+                <a href="https://www.kvtc.ac.tz" target="_blank">
+                    <img src="kahama.png" alt="KVTC Logo">
+                    Manala Foundation is proudly integrated with <span>Kahama Vocational Training Center (KVTC)</span>
+                </a>
+            </div>
+
+            <p style="text-align: center; margin-top: 20px; border-top: 1px solid #3a3e42; padding-top: 20px;">&copy; 2025 Manala Foundation. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ------------------ SLIDESHOW LOGIC ------------------
+            const slides = document.querySelectorAll('.slide-container .slide');
+            let currentSlide = 0;
+            const slideInterval = 5000; // Muda wa kuslide (5 seconds)
+
+            function nextSlide() {
+                // Ficha picha ya sasa (opacity 0)
+                slides[currentSlide].style.opacity = 0;
+                
+                // Nenda kwenye picha inayofuata
+                currentSlide = (currentSlide + 1) % slides.length;
+                
+                // Onyesha picha mpya (opacity 1)
+                slides[currentSlide].style.opacity = 1;
+            }
+
+            // Anza slideshow
+            setInterval(nextSlide, slideInterval);
+
+            // ------------------ SUCCESSES ACCORDION LOGIC ------------------
+            const successHeaders = document.querySelectorAll('.success-header');
+
+            successHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const wasOpen = content.classList.contains('open');
+                    
+                    // Funga zote na uondoe 'active'
+                    document.querySelectorAll('.success-content').forEach(c => {
+                        c.classList.remove('open');
+                        c.style.maxHeight = null;
+                        c.previousElementSibling.classList.remove('active');
+                    });
+                    
+                    // Fungua hii tu kama haikuwa wazi
+                    if (!wasOpen) {
+                        header.classList.add('active');
+                        content.classList.add('open');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Weka kipengele cha kwanza wazi kinapopakia
+            const firstContent = document.querySelector('.success-content.open');
+            if (firstContent) {
+                firstContent.style.maxHeight = firstContent.scrollHeight + "px";
+            }
+        });
+    </script>
 </body>
 </html>
