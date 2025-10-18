@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manala Foundation - Empowering Better Lives</title>
+    <meta name="description" content="Manala Foundation - Empowering communities in Tanzania through education, healthcare, and economic development initiatives in Shinyanga region.">
+    <meta name="keywords" content="Manala Foundation, Tanzania NGO, education Tanzania, healthcare Shinyanga, economic development, community empowerment">
+    <meta name="author" content="Manala Foundation">
+    <meta property="og:title" content="Manala Foundation - Empowering Better Lives">
+    <meta property="og:description" content="Committed to uplifting lives in Shinyanga, Tanzania through high-impact initiatives in education, healthcare, and economic development.">
+    <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -15,15 +21,31 @@
             --dark-color: #212529;
             --light-color: #ffffff;
             --bg-light: #f4f7f9;
+            --bg-dark: #1a1a1a;
+            --text-dark: #333;
+            --text-light: #f4f4f4;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary-color: #4da6ff;
+            --secondary-color: #5cd85c;
+            --accent-color: #ffd54f;
+            --dark-color: #f4f4f4;
+            --light-color: #2d2d2d;
+            --bg-light: #3a3a3a;
+            --bg-dark: #1a1a1a;
+            --text-dark: #f4f4f4;
+            --text-light: #f4f4f4;
         }
 
         /* Base Styling */
         * {
             margin: 0;
             padding: 0;
-            /* MUHIMU: Inahakikisha padding na border haziingilii upana wa element */
             box-sizing: border-box; 
             font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         /* GLOBAL ANIMATION: FADE-IN ON LOAD */
@@ -34,17 +56,48 @@
 
         body { 
             line-height: 1.6; 
-            color: var(--dark-color); 
+            color: var(--text-dark); 
             background-color: var(--light-color); 
             animation: fadeIn 1.5s ease-out both; 
         }
         .container { width: 90%; max-width: 1200px; margin: auto; overflow: hidden; }
 
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
         /* ------------------- HEADER/MENU ------------------- */
         header { 
-            background: var(--light-color); padding: 15px 0; border-bottom: 4px solid var(--secondary-color); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
+            background: var(--light-color); 
+            padding: 15px 0; 
+            border-bottom: 4px solid var(--secondary-color); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
         }
-        header .container { display: flex; justify-content: space-between; align-items: center; } /* Kurekebisha layout ya header */
+        header .container { display: flex; justify-content: space-between; align-items: center; }
         header .logo { display: flex; align-items: center; }
         header .logo img { height: 45px; margin-right: 12px; }
         header .logo h2 { font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--primary-color); font-size: 1.5rem; }
@@ -55,7 +108,13 @@
         header nav ul li a { color: var(--dark-color); text-decoration: none; font-weight: 500; padding: 10px 18px; transition: color 0.3s, background-color 0.3s; border-radius: 5px; }
         header nav ul li a:hover { color: var(--light-color); background-color: var(--primary-color); }
         .cta-button { 
-            background: var(--secondary-color); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-left: 20px; 
+            background: var(--secondary-color); 
+            color: white; 
+            padding: 10px 25px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            margin-left: 20px; 
             transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; 
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
         }
@@ -77,7 +136,6 @@
             justify-content: center;
             background: #000; 
         }
-        /* ... Slide/Overlay CSS remains the same ... */
         .slide-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;
         }
@@ -111,7 +169,7 @@
         .value-item {
             padding: 20px;
             border-left: 4px solid var(--accent-color);
-            background: #fff;
+            background: var(--light-color);
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             border-radius: 8px;
         }
@@ -139,7 +197,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .program-item i {
-            font-size: 2.5rem; /* Icon size */
+            font-size: 2.5rem;
             color: var(--secondary-color);
             margin-bottom: 15px;
             display: block;
@@ -149,11 +207,67 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
-        /* Successes Section Accordion Styling - Imeachwa kama ilivyo */
-        /* ... Successes CSS ... */
+        /* Successes Section Accordion Styling */
+        .success-accordion-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .success-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: var(--light-color);
+        }
+        .success-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .success-header:hover {
+            background: #003366;
+        }
+        .success-header.active {
+            background: #003366;
+        }
+        .success-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding: 0 20px;
+            background: var(--light-color);
+        }
+        .success-content.open {
+            padding: 20px;
+            max-height: 2000px;
+        }
+        .success-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .success-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .success-image-box {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .success-image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
         /* ------------------- IMPACT GALLERY - UNIQUE 3D STYLE ------------------- */
-        /* ... Gallery CSS remains the same ... */
         .gallery-grid-unique {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -224,7 +338,9 @@
             resize: vertical; 
             transition: border-color 0.3s, box-shadow 0.3s;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08); 
-            box-sizing: border-box; /* KUHAKIKISHA INAONEKANA VIZURI KWENYE SIMU */
+            box-sizing: border-box;
+            background: var(--light-color);
+            color: var(--text-dark);
         }
         .contact-form-col input:focus, .contact-form-col textarea:focus {
             border-color: var(--secondary-color);
@@ -277,7 +393,7 @@
 
 
         /* ------------------- FOOTER (KVTC PREMIUM LOGO) ------------------- */
-        footer { background: var(--dark-color); color: var(--light-color); padding: 50px 0 20px 0; }
+        footer { background: var(--bg-dark); color: var(--text-light); padding: 50px 0 20px 0; }
         footer .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; }
         footer .footer-col { flex-basis: 22%; padding: 0 15px; margin-bottom: 20px; }
         footer .footer-col h4 { font-family: 'Nunito', sans-serif; color: var(--accent-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; }
@@ -285,7 +401,7 @@
         footer ul li a { color: #ccc; text-decoration: none; line-height: 2; transition: color 0.3s; }
         footer ul li a:hover { color: var(--secondary-color); }
         
-        /* KVTC Integration Style (Premium/Kubwa) */
+        /* KVTC Integration Style */
         .kvtc-integration {
             text-align: center;
             padding-top: 20px;
@@ -300,7 +416,6 @@
             margin-bottom: 25px;
         }
 
-        /* KVTC Text Style */
         .kvtc-integration .partnership-text {
             font-size: 1.2rem;
             font-weight: 600;
@@ -308,17 +423,16 @@
             text-decoration: none;
             margin-bottom: 10px;
             transition: color 0.3s;
-            display: block; /* MUHIMU: Inahakikisha maneno yanaketi vizuri juu ya picha */
+            display: block;
             color: #ccc;
         }
 
-        /* KVTC Logo Style (Kubwa na Premium 3D) */
         .kvtc-integration img {
-            height: 80px; /* Logo kubwa zaidi */
+            height: 80px;
             max-width: 100%;
             margin-top: 10px;
             border-radius: 8px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); /* 3D Box Shadow */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .kvtc-integration img:hover {
@@ -326,7 +440,6 @@
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
         }
         
-        /* Global Partnership Title */
         .global-partnerships-title {
             font-size: 1.2rem;
             color: var(--accent-color);
@@ -336,15 +449,59 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
+
+        /* Developer Credit with Animation - NOW AT BOTTOM */
+        .developer-credit {
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .developer-credit a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+        .developer-credit a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            animation: none;
+        }
+
+        /* Copyright text */
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #3a3e42;
+            padding-top: 20px;
+            color: #ccc;
+        }
         /* ------------------- END FOOTER ------------------- */
 
 
         /* ------------------- MEDIA QUERIES (RESPONSIVE) ------------------- */
         @media (max-width: 992px) {
-            /* Header adjustments for smaller screens */
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
             header .container { flex-direction: column; align-items: flex-start; }
             header nav { line-height: 1; width: 100%; margin-top: 10px; }
-            header nav ul { display: none; /* Ficha links kwenye simu */ }
+            header nav ul { display: none; }
             header nav .cta-button { display: block; margin: 10px auto; width: 80%; text-align: center; }
 
             #hero-video { height: 60vh; }
@@ -352,9 +509,9 @@
             #hero-video p { font-size: 1.2rem; }
             
             .program-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .program-item i { font-size: 2rem; } /* Icon size ndogo kidogo */
+            .program-item i { font-size: 2rem; }
             
-            .value-grid { grid-template-columns: 1fr; } /* MUHIMU: Value Grid inakuwa 1 column */
+            .value-grid { grid-template-columns: 1fr; }
 
             .gallery-grid-unique { grid-template-columns: 1fr; } 
 
@@ -364,21 +521,84 @@
             footer .footer-col { flex-basis: 45%; }
             .success-header { font-size: 1.1rem; }
             
-            .kvtc-integration img { height: 60px; } /* Logo ndogo kidogo kwenye simu */
+            .kvtc-integration img { height: 60px; }
             .kvtc-integration .partnership-text, .global-partnerships-title { font-size: 1rem; }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+                bottom: 30px;
+                right: 30px;
+            }
         }
 
         @media (max-width: 600px) {
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
             #hero-video h1 { font-size: 2.0rem; }
             #hero-video p { font-size: 1.0rem; }
             .program-grid { grid-template-columns: 1fr; }
-            .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 20px; right: 20px; }
+            
+            .whatsapp-float { 
+                width: 50px; 
+                height: 50px; 
+                font-size: 25px; 
+                bottom: 20px; 
+                right: 20px; 
+            }
+            
             footer .footer-col { flex-basis: 100%; padding: 0; }
             .kvtc-integration { margin-top: 20px; }
+            
+            .value-item {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .program-item {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #hero-video h1 { font-size: 1.8rem; }
+            #hero-video p { font-size: 0.9rem; }
+            
+            .contact-detail-item {
+                font-size: 0.9rem;
+            }
+            
+            .success-header {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+            
+            .success-content {
+                padding: 0 15px;
+            }
+            
+            .success-content.open {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <header>
         <div class="container">
@@ -497,8 +717,8 @@
                     </div>
                     <div class="success-content">
                         <h4>Uplifting Students from Economically Disadvantaged Households</h4>
-                        <p>In April 2024, the Manala Foundation successfully implemented its scholarship support program. A total of **12 low-income households benefited**, ensuring their children could continue pursuing education without the burden of financial hardship. The scholarship specifically supported students enrolled at **Nyandekwa Secondary School** and **Isagehe Secondary School**.</p>
-                        <p>The assistance covered essential school-related expenses, enabling the students to attend classes consistently and focus on their academic goals. This intervention reflects the Foundation’s ongoing commitment to promoting equal access to quality education and breaking the cycle of poverty through empowerment.</p>
+                        <p>In April 2024, the Manala Foundation successfully implemented its scholarship support program. A total of <strong>18 students from economically disadvantaged households</strong> benefited, ensuring their children could continue pursuing education without the burden of financial hardship. The scholarship specifically supported students enrolled at <strong>Nyandekwa Secondary School</strong> and <strong>Isagehe Secondary School</strong>.</p>
+                        <p>The assistance covered essential school-related expenses, enabling the students to attend classes consistently and focus on their academic goals. This intervention reflects the Foundation's ongoing commitment to promoting equal access to quality education and breaking the cycle of poverty through empowerment.</p>
                         <div class="success-image-box">
                             <img src="picha2.jpg" alt="Scholarship Support Program" loading="lazy" decoding="async">
                         </div>
@@ -623,29 +843,55 @@
                 <h4 class="global-partnerships-title">View Our Global Partnerships</h4>
             </div>
 
-            <p style="text-align: center; margin-top: 20px; border-top: 1px solid #3a3e42; padding-top: 20px;">&copy; 2025 Manala Foundation. All Rights Reserved.</p>
+            <p class="copyright">&copy; 2025 Manala Foundation. All Rights Reserved.</p>
+            
+            <div class="developer-credit">
+                <p>Developed by <a href="https://www.instagram.com/matomediatz" target="_blank">MATO MEDIA TZ</a></p>
+            </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // ------------------ THEME TOGGLE LOGIC ------------------
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            // Check for saved theme or prefer color scheme
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                if (theme === 'dark') {
+                    themeIcon.className = 'fas fa-sun';
+                    themeToggle.title = 'Switch to Light Mode';
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    themeToggle.title = 'Switch to Dark Mode';
+                }
+            }
+
             // ------------------ SLIDESHOW LOGIC ------------------
             const slides = document.querySelectorAll('.slide-container .slide');
             let currentSlide = 0;
-            const slideInterval = 5000; // Muda wa kuslide (5 seconds)
+            const slideInterval = 5000;
 
             function nextSlide() {
-                // Ficha picha ya sasa (opacity 0)
                 slides[currentSlide].style.opacity = 0;
-                
-                // Nenda kwenye picha inayofuata
                 currentSlide = (currentSlide + 1) % slides.length;
-                
-                // Onyesha picha mpya (opacity 1)
                 slides[currentSlide].style.opacity = 1;
             }
 
-            // Anza slideshow
             setInterval(nextSlide, slideInterval);
 
             // ------------------ SUCCESSES ACCORDION LOGIC ------------------
@@ -656,14 +902,12 @@
                     const content = header.nextElementSibling;
                     const wasOpen = content.classList.contains('open');
                     
-                    // Funga zote na uondoe 'active'
                     document.querySelectorAll('.success-content').forEach(c => {
                         c.classList.remove('open');
                         c.style.maxHeight = null;
                         c.previousElementSibling.classList.remove('active');
                     });
                     
-                    // Fungua hii tu kama haikuwa wazi
                     if (!wasOpen) {
                         header.classList.add('active');
                         content.classList.add('open');
@@ -672,7 +916,6 @@
                 });
             });
 
-            // Weka kipengele cha kwanza wazi kinapopakia
             const firstContent = document.querySelector('.success-content.open');
             if (firstContent) {
                 firstContent.style.maxHeight = firstContent.scrollHeight + "px";
