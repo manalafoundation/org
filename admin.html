@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manala Foundation - Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #004d99;
+            --secondary-color: #38a745;
+            --accent-color: #ffc107;
+            --dark-color: #212529;
+            --light-color: #ffffff;
+            --bg-light: #f4f7f9;
+            --bg-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #004d99 0%, #38a745 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .admin-login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .admin-login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(135deg, #004d99 0%, #38a745 100%);
+        }
+
+        .login-header {
+            background: var(--bg-light);
+            padding: 40px 30px 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--primary-color);
+        }
+
+        .logo-img {
+            height: 80%;
+            width: auto;
+        }
+
+        .login-header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .login-form {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 77, 153, 0.2);
+            outline: none;
+            background: white;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #004d99 0%, #38a745 100%);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 77, 153, 0.3);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 77, 153, 0.4);
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+            color: #d63031;
+        }
+
+        .water-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: bubbleRise 8s linear infinite;
+        }
+
+        @keyframes bubbleRise {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Dashboard Styles */
+        .dashboard-page {
+            display: none;
+            min-height: 100vh;
+            background: #f5f7fa;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #004d99 0%, #38a745 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 30px 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-item {
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #555;
+        }
+
+        .menu-item.active {
+            background: rgba(0, 77, 153, 0.1);
+            border-left-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .menu-item:hover {
+            background: rgba(0, 77, 153, 0.05);
+        }
+
+        .menu-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: #f5f7fa;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--bg-light);
+            font-size: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .save-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .save-btn:hover {
+            background: #2e8b57;
+            transform: translateY(-2px);
+        }
+
+        .alert-success {
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid #2ecc71;
+            color: #27ae60;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .home-btn {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <a href="/" class="home-btn" title="Back to Website">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <!-- Login Page -->
+    <div class="admin-login-container" id="loginPage">
+        <div class="water-bubbles" id="waterBubbles"></div>
+        
+        <div class="login-header">
+            <div class="logo-circle">
+                <img src="logo.png" alt="Manala Foundation" class="logo-img">
+            </div>
+            <h1>Admin Login</h1>
+            <p>Manala Foundation Management System</p>
+        </div>
+        
+        <div class="login-form">
+            <div class="alert alert-error" id="errorAlert">
+                <i class="fas fa-exclamation-circle"></i> Invalid username or password
+            </div>
+            
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <button type="button" class="password-toggle" id="passwordToggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-lock"></i> Login to Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div class="dashboard-page" id="dashboardPage">
+        <div class="admin-header">
+            <div class="logo-section">
+                <div class="logo-circle" style="width: 50px; height: 50px;">
+                    <img src="logo.png" alt="Manala Foundation" class="logo-img">
+                </div>
+                <div>
+                    <h2>Admin Dashboard</h2>
+                    <p>Manala Foundation Management</p>
+                </div>
+            </div>
+            <div class="admin-info">
+                <span>Welcome, <span id="currentUsername">Admin</span></span>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="admin-container">
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="menu-item active" data-target="hero-management">
+                        <i class="fas fa-image"></i>
+                        <span>Hero Section</span>
+                    </li>
+                    <li class="menu-item" data-target="about-management">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Section</span>
+                    </li>
+                    <li class="menu-item" data-target="core-identity">
+                        <i class="fas fa-fingerprint"></i>
+                        <span>Core Identity</span>
+                    </li>
+                    <li class="menu-item" data-target="programs-management">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Core Pillars</span>
+                    </li>
+                    <li class="menu-item" data-target="successes-management">
+                        <i class="fas fa-trophy"></i>
+                        <span>Impact Stories</span>
+                    </li>
+                    <li class="menu-item" data-target="contact-management">
+                        <i class="fas fa-address-book"></i>
+                        <span>Contact Info</span>
+                    </li>
+                    <li class="menu-item" data-target="settings-management">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-content">
+                <!-- Hero Section Management -->
+                <div class="content-section active" id="hero-management">
+                    <h3 class="section-title">Hero Section Management</h3>
+                    
+                    <div class="alert-success" id="heroAlert">
+                        <i class="fas fa-check-circle"></i> Hero section updated successfully!
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heroTitle">Hero Title</label>
+                        <input type="text" id="heroTitle" class="form-control" value="Empowering Communities Through Sustainable Change">
+                    </div>
+                    <div class="form-group">
+                        <label for="heroDescription">Hero Description</label>
+                        <textarea id="heroDescription" class="form-control">Committed to uplifting lives in Shinyanga, Tanzania, through high-impact initiatives in education, healthcare, and economic development.</textarea>
+                    </div>
+                    <button class="save-btn" onclick="saveHeroSection()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+
+                <!-- About Section Management -->
+                <div class="content-section" id="about-management">
+                    <h3 class="section-title">About Section Management</h3>
+                    
+                    <div class="alert-success" id="aboutAlert">
+                        <i class="fas fa-check-circle"></i> About section updated successfully!
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aboutText">About Text</label>
+                        <textarea id="aboutText" class="form-control">Manala Foundation is a not-for-profit, non-governmental organization founded in May 2022 and officially registered in 26th July 2024 by the Tanzanian Ministry of Community Development, Gender, Women, and Special Groups. The organization is committed to empowering individuals and communities through education, healthcare, and economic development initiatives. By fostering collaboration and innovation, we aim to address systemic challenges and create positive lasting change.</textarea>
+                    </div>
+                    <button class="save-btn" onclick="saveAboutSection()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+
+                <!-- Core Identity Management -->
+                <div class="content-section" id="core-identity">
+                    <h3 class="section-title">Core Identity Management</h3>
+                    
+                    <div class="alert-success" id="coreIdentityAlert">
+                        <i class="fas fa-check-circle"></i> Core identity updated successfully!
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coreIdentityTitle">Core Identity Title</label>
+                        <input type="text" id="coreIdentityTitle" class="form-control" value="Our Core Identity">
+                    </div>
+
+                    <h4>Vision</h4>
+                    <div class="form-group">
+                        <label for="visionTitle">Vision Title</label>
+                        <input type="text" id="visionTitle" class="form-control" value="Vision">
+                    </div>
+                    <div class="form-group">
+                        <label for="visionText">Vision Text</label>
+                        <textarea id="visionText" class="form-control">A thriving and equitable community where every individual enjoys access to education, healthcare, and sustainable livelihoods.</textarea>
+                    </div>
+
+                    <h4>Mission</h4>
+                    <div class="form-group">
+                        <label for="missionTitle">Mission Title</label>
+                        <input type="text" id="missionTitle" class="form-control" value="Mission">
+                    </div>
+                    <div class="form-group">
+                        <label for="missionText">Mission Text</label>
+                        <textarea id="missionText" class="form-control">Committed to empowering individuals and communities through education, healthcare, and economic development initiatives, fostering collaboration and innovation.</textarea>
+                    </div>
+
+                    <h4>Values</h4>
+                    <div class="form-group">
+                        <label for="valuesTitle">Values Title</label>
+                        <input type="text" id="valuesTitle" class="form-control" value="Values">
+                    </div>
+                    <div class="form-group">
+                        <label for="valuesText">Values Text</label>
+                        <textarea id="valuesText" class="form-control">Guided by principles of Transformation, Effectiveness, Excellence, Relationality, Empowerment, and Passion in all our work.</textarea>
+                    </div>
+
+                    <button class="save-btn" onclick="saveCoreIdentity()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+
+                <!-- Core Pillars Management -->
+                <div class="content-section" id="programs-management">
+                    <h3 class="section-title">Core Pillars Management</h3>
+                    
+                    <div class="alert-success" id="programsAlert">
+                        <i class="fas fa-check-circle"></i> Core pillars updated successfully!
+                    </div>
+
+                    <div class="form-group">
+                        <label for="programsTitle">Section Title</label>
+                        <input type="text" id="programsTitle" class="form-control" value="Our Core Pillars of Development">
+                    </div>
+
+                    <h4>Pillar 1</h4>
+                    <div class="form-group">
+                        <label for="program1Title">Pillar 1 Title</label>
+                        <input type="text" id="program1Title" class="form-control" value="Education">
+                    </div>
+                    <div class="form-group">
+                        <label for="program1Desc">Pillar 1 Description</label>
+                        <textarea id="program1Desc" class="form-control">Focusing on literacy, numeracy, and vocational skills training to provide children and youth with the key to a better future.</textarea>
+                    </div>
+
+                    <h4>Pillar 2</h4>
+                    <div class="form-group">
+                        <label for="program2Title">Pillar 2 Title</label>
+                        <input type="text" id="program2Title" class="form-control" value="Healthcare">
+                    </div>
+                    <div class="form-group">
+                        <label for="program2Desc">Pillar 2 Description</label>
+                        <textarea id="program2Desc" class="form-control">Ensuring access to medical services, health education, and preventive care in rural communities to improve well-being.</textarea>
+                    </div>
+
+                    <h4>Pillar 3</h4>
+                    <div class="form-group">
+                        <label for="program3Title">Pillar 3 Title</label>
+                        <input type="text" id="program3Title" class="form-control" value="Economic Development">
+                    </div>
+                    <div class="form-group">
+                        <label for="program3Desc">Pillar 3 Description</label>
+                        <textarea id="program3Desc" class="form-control">Promoting entrepreneurship, microfinance, and sustainable agriculture for women and youth groups to foster job creation and income generation.</textarea>
+                    </div>
+
+                    <h4>Pillar 4</h4>
+                    <div class="form-group">
+                        <label for="program4Title">Pillar 4 Title</label>
+                        <input type="text" id="program4Title" class="form-control" value="Environmental Sustainability">
+                    </div>
+                    <div class="form-group">
+                        <label for="program4Desc">Pillar 4 Description</label>
+                        <textarea id="program4Desc" class="form-control">Dedicated to conservation and resource management through community education and practical activities like tree planting.</textarea>
+                    </div>
+
+                    <button class="save-btn" onclick="savePrograms()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+
+                <!-- Success Stories Management -->
+                <div class="content-section" id="successes-management">
+                    <h3 class="section-title">Impact Stories Management</h3>
+                    
+                    <div class="alert-success" id="successesAlert">
+                        <i class="fas fa-check-circle"></i> Impact stories updated successfully!
+                    </div>
+
+                    <h4>Success Story 1</h4>
+                    <div class="form-group">
+                        <label for="success1Title">Title</label>
+                        <input type="text" id="success1Title" class="form-control" value="January 2024: Health Support Initiative">
+                    </div>
+                    <div class="form-group">
+                        <label for="success1Content">Content</label>
+                        <textarea id="success1Content" class="form-control">In January 2024, the Manala Foundation successfully implemented a health support initiative aimed at improving the well-being of vulnerable children in Kahama. The Foundation provided comprehensive health insurance coverage to 60 orphans residing at the Mwime Orphanage Centre. This intervention ensures that the children will have timely access to quality healthcare services, reducing the risks associated with untreated illnesses and medical emergencies.
+
+This program strengthens the overall welfare of the orphans and supports the orphanage in meeting the needs of the children under its care, reflecting our dedication to lasting impact through health and community empowerment.</textarea>
+                    </div>
+
+                    <h4 style="margin-top: 30px;">Success Story 2</h4>
+                    <div class="form-group">
+                        <label for="success2Title">Title</label>
+                        <input type="text" id="success2Title" class="form-control" value="April 2024: Scholarship Support Program">
+                    </div>
+                    <div class="form-group">
+                        <label for="success2Content">Content</label>
+                        <textarea id="success2Content" class="form-control">In April 2024, the Manala Foundation successfully implemented its scholarship support program. A total of 18 students from economically disadvantaged households benefited, ensuring their children could continue pursuing education without the burden of financial hardship. The scholarship specifically supported students enrolled at Nyandekwa Secondary School and Isagehe Secondary School.
+
+The assistance covered essential school-related expenses, enabling the students to attend classes consistently and focus on their academic goals. This intervention reflects the Foundation's ongoing commitment to promoting equal access to quality education and breaking the cycle of poverty through empowerment.</textarea>
+                    </div>
+
+                    <button class="save-btn" onclick="saveSuccessStories()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+
+                <!-- Contact Information Management -->
+                <div class="content-section" id="contact-management">
+                    <h3 class="section-title">Contact Information Management</h3>
+                    
+                    <div class="alert-success" id="contactAlert">
+                        <i class="fas fa-check-circle"></i> Contact information updated successfully!
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactTitle">Contact Section Title</label>
+                        <input type="text" id="contactTitle" class="form-control" value="Let's Start a Conversation!">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactDescription">Contact Description</label>
+                        <textarea id="contactDescription" class="form-control">Have a question, a project proposal, or wish to volunteer? Reach out directly. We welcome all forms of collaboration.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactFormTitle">Contact Form Title</label>
+                        <input type="text" id="contactFormTitle" class="form-control" value="Send Us a Message">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactAddress">Address</label>
+                        <input type="text" id="contactAddress" class="form-control" value="Kagongwa, Kahama, Shinyanga, Tanzania">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" class="form-control" value="info@manalafnd.org">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Phone</label>
+                        <input type="text" id="contactPhone" class="form-control" value="+255 760 244 679">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactRegistration">Registration Number</label>
+                        <input type="text" id="contactRegistration" class="form-control" value="Registration No: 00NGO/R/7079 (since 26/07/2024)">
+                    </div>
+                    <div class="form-group">
+                        <label for="chairpersonEmail">Chairperson Email</label>
+                        <input type="email" id="chairpersonEmail" class="form-control" value="mtmbumba@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsappNumber">WhatsApp Number</label>
+                        <input type="text" id="whatsappNumber" class="form-control" value="+255 765 374 146">
+                    </div>
+
+                    <button class="save-btn" onclick="saveContactInfo()">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+
+                <!-- Settings Management -->
+                <div class="content-section" id="settings-management">
+                    <h3 class="section-title">Admin Settings</h3>
+                    
+                    <div class="alert-success" id="settingsAlert">
+                        <i class="fas fa-check-circle"></i> Settings updated successfully!
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adminUsernameSetting">Admin Username</label>
+                        <input type="text" id="adminUsernameSetting" class="form-control" value="manala">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPasswordSetting">New Password</label>
+                        <input type="password" id="adminPasswordSetting" class="form-control" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminEmailSetting">Admin Email</label>
+                        <input type="email" id="adminEmailSetting" class="form-control" value="info@manalafnd.org">
+                    </div>
+
+                    <button class="save-btn" onclick="saveAdminSettings()">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === ADMIN CREDENTIALS ===
+        let adminCredentials = {
+            username: 'manala',
+            password: 'Manala123#'
+        };
+
+        // Load saved credentials from localStorage
+        const savedCredentials = localStorage.getItem('adminCredentials');
+        if (savedCredentials) {
+            adminCredentials = JSON.parse(savedCredentials);
+        }
+
+        // === INITIALIZE ADMIN PANEL ===
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create water bubbles effect
+            const waterBubbles = document.getElementById('waterBubbles');
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + 'vw';
+                bubble.style.width = (Math.random() * 15 + 5) + 'px';
+                bubble.style.height = bubble.style.width;
+                bubble.style.animationDelay = (Math.random() * 5) + 's';
+                bubble.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                waterBubbles.appendChild(bubble);
+            }
+
+            // Password toggle visibility
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordInput = document.getElementById('password');
+            
+            passwordToggle.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+
+            // Form submission
+            const adminLoginForm = document.getElementById('adminLoginForm');
+            const errorAlert = document.getElementById('errorAlert');
+
+            adminLoginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (username === adminCredentials.username && password === adminCredentials.password) {
+                    // Successful login
+                    errorAlert.style.display = 'none';
+                    
+                    // Show loading state
+                    const submitBtn = adminLoginForm.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+                    submitBtn.disabled = true;
+                    
+                    // Redirect to dashboard after delay
+                    setTimeout(() => {
+                        document.getElementById('loginPage').style.display = 'none';
+                        document.getElementById('dashboardPage').style.display = 'block';
+                        document.getElementById('currentUsername').textContent = adminCredentials.username;
+                        loadAdminData();
+                    }, 1500);
+                } else {
+                    // Failed login
+                    errorAlert.style.display = 'block';
+                    
+                    // Shake animation for error
+                    adminLoginForm.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        adminLoginForm.style.animation = '';
+                    }, 500);
+                }
+            });
+
+            // Navigation
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    
+                    // Remove active class from all items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Hide all sections
+                    document.querySelectorAll('.content-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show target section
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    document.getElementById('dashboardPage').style.display = 'none';
+                    document.getElementById('loginPage').style.display = 'block';
+                    adminLoginForm.reset();
+                    errorAlert.style.display = 'none';
+                }
+            });
+
+            // Load initial data
+            loadAdminData();
+        });
+
+        // === DATA MANAGEMENT FUNCTIONS ===
+
+        function loadAdminData() {
+            // Load hero section data
+            const heroData = localStorage.getItem('heroData');
+            if (heroData) {
+                const data = JSON.parse(heroData);
+                document.getElementById('heroTitle').value = data.title || '';
+                document.getElementById('heroDescription').value = data.description || '';
+            }
+
+            // Load about section data
+            const aboutData = localStorage.getItem('aboutData');
+            if (aboutData) {
+                const data = JSON.parse(aboutData);
+                document.getElementById('aboutText').value = data.aboutText || '';
+            }
+
+            // Load core identity data
+            const coreIdentityData = localStorage.getItem('coreIdentityData');
+            if (coreIdentityData) {
+                const data = JSON.parse(coreIdentityData);
+                document.getElementById('coreIdentityTitle').value = data.coreIdentityTitle || '';
+                document.getElementById('visionTitle').value = data.visionTitle || '';
+                document.getElementById('visionText').value = data.visionText || '';
+                document.getElementById('missionTitle').value = data.missionTitle || '';
+                document.getElementById('missionText').value = data.missionText || '';
+                document.getElementById('valuesTitle').value = data.valuesTitle || '';
+                document.getElementById('valuesText').value = data.valuesText || '';
+            }
+
+            // Load programs data
+            const programsData = localStorage.getItem('programsData');
+            if (programsData) {
+                const data = JSON.parse(programsData);
+                document.getElementById('programsTitle').value = data.programsTitle || '';
+                document.getElementById('program1Title').value = data.program1Title || '';
+                document.getElementById('program1Desc').value = data.program1Desc || '';
+                document.getElementById('program2Title').value = data.program2Title || '';
+                document.getElementById('program2Desc').value = data.program2Desc || '';
+                document.getElementById('program3Title').value = data.program3Title || '';
+                document.getElementById('program3Desc').value = data.program3Desc || '';
+                document.getElementById('program4Title').value = data.program4Title || '';
+                document.getElementById('program4Desc').value = data.program4Desc || '';
+            }
+
+            // Load success stories data
+            const successesData = localStorage.getItem('successesData');
+            if (successesData) {
+                const data = JSON.parse(successesData);
+                document.getElementById('success1Title').value = data.success1Title || '';
+                document.getElementById('success1Content').value = data.success1Content || '';
+                document.getElementById('success2Title').value = data.success2Title || '';
+                document.getElementById('success2Content').value = data.success2Content || '';
+            }
+
+            // Load contact info data
+            const contactData = localStorage.getItem('contactData');
+            if (contactData) {
+                const data = JSON.parse(contactData);
+                document.getElementById('contactTitle').value = data.contactTitle || '';
+                document.getElementById('contactDescription').value = data.contactDescription || '';
+                document.getElementById('contactFormTitle').value = data.contactFormTitle || '';
+                document.getElementById('contactAddress').value = data.address || '';
+                document.getElementById('contactEmail').value = data.email || '';
+                document.getElementById('contactPhone').value = data.phone || '';
+                document.getElementById('contactRegistration').value = data.registration || '';
+                document.getElementById('chairpersonEmail').value = data.chairpersonEmail || '';
+                document.getElementById('whatsappNumber').value = data.whatsapp || '';
+            }
+
+            // Load admin settings
+            document.getElementById('adminUsernameSetting').value = adminCredentials.username || '';
+            document.getElementById('adminEmailSetting').value = adminCredentials.email || '';
+        }
+
+        function saveHeroSection() {
+            const heroData = {
+                title: document.getElementById('heroTitle').value,
+                description: document.getElementById('heroDescription').value
+            };
+            localStorage.setItem('heroData', JSON.stringify(heroData));
+            showAlert('heroAlert');
+        }
+
+        function saveAboutSection() {
+            const aboutData = {
+                aboutText: document.getElementById('aboutText').value
+            };
+            localStorage.setItem('aboutData', JSON.stringify(aboutData));
+            showAlert('aboutAlert');
+        }
+
+        function saveCoreIdentity() {
+            const coreIdentityData = {
+                coreIdentityTitle: document.getElementById('coreIdentityTitle').value,
+                visionTitle: document.getElementById('visionTitle').value,
+                visionText: document.getElementById('visionText').value,
+                missionTitle: document.getElementById('missionTitle').value,
+                missionText: document.getElementById('missionText').value,
+                valuesTitle: document.getElementById('valuesTitle').value,
+                valuesText: document.getElementById('valuesText').value
+            };
+            localStorage.setItem('coreIdentityData', JSON.stringify(coreIdentityData));
+            showAlert('coreIdentityAlert');
+        }
+
+        function savePrograms() {
+            const programsData = {
+                programsTitle: document.getElementById('programsTitle').value,
+                program1Title: document.getElementById('program1Title').value,
+                program1Desc: document.getElementById('program1Desc').value,
+                program2Title: document.getElementById('program2Title').value,
+                program2Desc: document.getElementById('program2Desc').value,
+                program3Title: document.getElementById('program3Title').value,
+                program3Desc: document.getElementById('program3Desc').value,
+                program4Title: document.getElementById('program4Title').value,
+                program4Desc: document.getElementById('program4Desc').value
+            };
+            localStorage.setItem('programsData', JSON.stringify(programsData));
+            showAlert('programsAlert');
+        }
+
+        function saveSuccessStories() {
+            const successesData = {
+                success1Title: document.getElementById('success1Title').value,
+                success1Content: document.getElementById('success1Content').value,
+                success2Title: document.getElementById('success2Title').value,
+                success2Content: document.getElementById('success2Content').value
+            };
+            localStorage.setItem('successesData', JSON.stringify(successesData));
+            showAlert('successesAlert');
+        }
+
+        function saveContactInfo() {
+            const contactData = {
+                contactTitle: document.getElementById('contactTitle').value,
+                contactDescription: document.getElementById('contactDescription').value,
+                contactFormTitle: document.getElementById('contactFormTitle').value,
+                address: document.getElementById('contactAddress').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                registration: document.getElementById('contactRegistration').value,
+                chairpersonEmail: document.getElementById('chairpersonEmail').value,
+                whatsapp: document.getElementById('whatsappNumber').value
+            };
+            localStorage.setItem('contactData', JSON.stringify(contactData));
+            showAlert('contactAlert');
+        }
+
+        function saveAdminSettings() {
+            const newUsername = document.getElementById('adminUsernameSetting').value;
+            const newPassword = document.getElementById('adminPasswordSetting').value;
+            const newEmail = document.getElementById('adminEmailSetting').value;
+            
+            if (newUsername) {
+                adminCredentials.username = newUsername;
+            }
+            
+            if (newPassword) {
+                adminCredentials.password = newPassword;
+            }
+            
+            adminCredentials.email = newEmail;
+            
+            localStorage.setItem('adminCredentials', JSON.stringify(adminCredentials));
+            document.getElementById('currentUsername').textContent = adminCredentials.username;
+            showAlert('settingsAlert');
+            
+            // Clear password field
+            document.getElementById('adminPasswordSetting').value = '';
+        }
+
+        function showAlert(alertId) {
+            const alert = document.getElementById(alertId);
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
