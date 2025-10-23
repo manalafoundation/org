@@ -87,6 +87,32 @@
             transform: scale(1.1);
         }
 
+        /* Admin Access Button */
+        .admin-access-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .admin-access-btn:hover {
+            transform: scale(1.1);
+        }
+
         /* ------------------- HEADER/MENU ------------------- */
         header { 
             background: var(--light-color); 
@@ -499,6 +525,14 @@
                 font-size: 1.1rem;
             }
 
+            .admin-access-btn {
+                bottom: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
             header .container { flex-direction: column; align-items: flex-start; }
             header nav { line-height: 1; width: 100%; margin-top: 10px; }
             header nav ul { display: none; }
@@ -537,6 +571,14 @@
             .theme-toggle {
                 top: 10px;
                 right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .admin-access-btn {
+                bottom: 10px;
+                left: 10px;
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
@@ -596,6 +638,11 @@
 </head>
 <body>
 
+    <!-- Admin Access Button -->
+    <a href="/admin" class="admin-access-btn" title="Admin Panel">
+        <i class="fas fa-cog"></i>
+    </a>
+
     <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
         <i class="fas fa-moon"></i>
     </button>
@@ -629,8 +676,8 @@
 
         <div class="overlay"></div>
         <div class="content">
-            <h1>Empowering Communities Through Sustainable Change</h1>
-            <p>Committed to uplifting lives in Shinyanga, Tanzania, through high-impact initiatives in education, healthcare, and economic development.</p>
+            <h1 id="hero-title">Empowering Communities Through Sustainable Change</h1>
+            <p id="hero-description">Committed to uplifting lives in Shinyanga, Tanzania, through high-impact initiatives in education, healthcare, and economic development.</p>
             <a href="#contact-us-main" class="cta-button" style="margin-left: 0; background: var(--accent-color); color: var(--dark-color);">Contact & Partner</a>
         </div>
     </section>
@@ -639,22 +686,22 @@
         <div class="container">
             <h2 class="section-title">Who We Are & Our Foundation</h2>
             <div style="font-size: 1.1rem; text-align: justify;">
-                <p>Manala Foundation is a not-for-profit, non-governmental organization founded in May 2022 and officially registered in 26th July 2024 by the Tanzanian Ministry of Community Development, Gender, Women, and Special Groups. The organization is committed to empowering individuals and communities through education, healthcare, and economic development initiatives. By fostering collaboration and innovation, we aim to address systemic challenges and create positive lasting change.</p>
+                <p id="about-text">Manala Foundation is a not-for-profit, non-governmental organization founded in May 2022 and officially registered in 26th July 2024 by the Tanzanian Ministry of Community Development, Gender, Women, and Special Groups. The organization is committed to empowering individuals and communities through education, healthcare, and economic development initiatives. By fostering collaboration and innovation, we aim to address systemic challenges and create positive lasting change.</p>
                 
-                <h3 style="color: var(--primary-color); margin-top: 30px; font-size: 1.5rem;">Our Core Identity</h3>
+                <h3 style="color: var(--primary-color); margin-top: 30px; font-size: 1.5rem;" id="core-identity-title">Our Core Identity</h3>
 
                 <div class="value-grid">
                     <div class="value-item">
-                        <h4>Vision</h4>
-                        <p>A thriving and equitable community where every individual enjoys access to education, healthcare, and sustainable livelihoods.</p>
+                        <h4 id="vision-title">Vision</h4>
+                        <p id="vision-text">A thriving and equitable community where every individual enjoys access to education, healthcare, and sustainable livelihoods.</p>
                     </div>
                     <div class="value-item">
-                        <h4>Mission</h4>
-                        <p>Committed to empowering individuals and communities through education, healthcare, and economic development initiatives, fostering collaboration and innovation.</p>
+                        <h4 id="mission-title">Mission</h4>
+                        <p id="mission-text">Committed to empowering individuals and communities through education, healthcare, and economic development initiatives, fostering collaboration and innovation.</p>
                     </div>
                     <div class="value-item">
-                        <h4>Values</h4>
-                        <p>Guided by principles of Transformation, Effectiveness, Excellence, Relationality, Empowerment, and Passion in all our work.</p>
+                        <h4 id="values-title">Values</h4>
+                        <p id="values-text">Guided by principles of Transformation, Effectiveness, Excellence, Relationality, Empowerment, and Passion in all our work.</p>
                     </div>
                 </div>
             </div>
@@ -663,28 +710,28 @@
 
     <section id="programs" style="background-color: var(--bg-light);">
         <div class="container">
-            <h2 class="section-title">Our Core Pillars of Development</h2>
+            <h2 class="section-title" id="programs-title">Our Core Pillars of Development</h2>
             <div class="program-grid">
                 
                 <div class="program-item">
                     <i class="fas fa-graduation-cap"></i>
-                    <h3>Education</h3>
-                    <p>Focusing on literacy, numeracy, and vocational skills training to provide children and youth with the key to a better future.</p>
+                    <h3 id="program1-title">Education</h3>
+                    <p id="program1-desc">Focusing on literacy, numeracy, and vocational skills training to provide children and youth with the key to a better future.</p>
                 </div>
                 <div class="program-item">
                     <i class="fas fa-stethoscope"></i>
-                    <h3>Healthcare</h3>
-                    <p>Ensuring access to medical services, health education, and preventive care in rural communities to improve well-being.</p>
+                    <h3 id="program2-title">Healthcare</h3>
+                    <p id="program2-desc">Ensuring access to medical services, health education, and preventive care in rural communities to improve well-being.</p>
                 </div>
                 <div class="program-item">
                     <i class="fas fa-chart-line"></i>
-                    <h3>Economic Development</h3>
-                    <p>Promoting entrepreneurship, microfinance, and sustainable agriculture for women and youth groups to foster job creation and income generation.</p>
+                    <h3 id="program3-title">Economic Development</h3>
+                    <p id="program3-desc">Promoting entrepreneurship, microfinance, and sustainable agriculture for women and youth groups to foster job creation and income generation.</p>
                 </div>
                 <div class="program-item" style="border-left-color: var(--primary-color);">
                     <i class="fas fa-leaf"></i>
-                    <h3>Environmental Sustainability</h3>
-                    <p>Dedicated to conservation and resource management through community education and practical activities like tree planting.</p>
+                    <h3 id="program4-title">Environmental Sustainability</h3>
+                    <p id="program4-desc">Dedicated to conservation and resource management through community education and practical activities like tree planting.</p>
                 </div>
             </div>
         </div>
@@ -697,30 +744,30 @@
                 
                 <div class="success-item">
                     <div class="success-header active">
-                        <span style="display: flex; align-items: center;"><i class="fas fa-heartbeat" style="margin-right: 15px; font-size: 1.5rem;"></i> January 2024: Health Support Initiative</span>
+                        <span style="display: flex; align-items: center;"><i class="fas fa-heartbeat" style="margin-right: 15px; font-size: 1.5rem;"></i> <span id="success1-title">January 2024: Health Support Initiative</span></span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="success-content open">
-                        <h4>Health Insurance for Vulnerable Children (Kahama)</h4>
-                        <p>In January 2024, the Manala Foundation successfully implemented a health support initiative aimed at improving the well-being of vulnerable children in Kahama. The Foundation provided comprehensive health insurance coverage to 60 orphans residing at the Mwime Orphanage Centre. This intervention ensures that the children will have timely access to quality healthcare services, reducing the risks associated with untreated illnesses and medical emergencies.</p>
-                        <p>This program strengthens the overall welfare of the orphans and supports the orphanage in meeting the needs of the children under its care, reflecting our dedication to lasting impact through health and community empowerment.</p>
+                        <h4 id="success1-subtitle">Health Insurance for Vulnerable Children (Kahama)</h4>
+                        <p id="success1-content">In January 2024, the Manala Foundation successfully implemented a health support initiative aimed at improving the well-being of vulnerable children in Kahama. The Foundation provided comprehensive health insurance coverage to 60 orphans residing at the Mwime Orphanage Centre. This intervention ensures that the children will have timely access to quality healthcare services, reducing the risks associated with untreated illnesses and medical emergencies.</p>
+                        <p id="success1-content2">This program strengthens the overall welfare of the orphans and supports the orphanage in meeting the needs of the children under its care, reflecting our dedication to lasting impact through health and community empowerment.</p>
                         <div class="success-image-box">
-                            <img src="picha1.jpg" alt="Health Support Initiative" loading="lazy" decoding="async">
+                            <img src="picha1.jpg" alt="Health Support Initiative" loading="lazy" decoding="async" id="success1-image">
                         </div>
                     </div>
                 </div>
                 
                 <div class="success-item">
                     <div class="success-header">
-                        <span style="display: flex; align-items: center;"><i class="fas fa-book-reader" style="margin-right: 15px; font-size: 1.5rem;"></i> April 2024: Scholarship Support Program</span>
+                        <span style="display: flex; align-items: center;"><i class="fas fa-book-reader" style="margin-right: 15px; font-size: 1.5rem;"></i> <span id="success2-title">April 2024: Scholarship Support Program</span></span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="success-content">
-                        <h4>Uplifting Students from Economically Disadvantaged Households</h4>
-                        <p>In April 2024, the Manala Foundation successfully implemented its scholarship support program. A total of 18 students from economically disadvantaged households benefited, ensuring their children could continue pursuing education without the burden of financial hardship. The scholarship specifically supported students enrolled at Nyandekwa Secondary School and Isagehe Secondary School.</p>
-                        <p>The assistance covered essential school-related expenses, enabling the students to attend classes consistently and focus on their academic goals. This intervention reflects the Foundation's ongoing commitment to promoting equal access to quality education and breaking the cycle of poverty through empowerment.</p>
+                        <h4 id="success2-subtitle">Uplifting Students from Economically Disadvantaged Households</h4>
+                        <p id="success2-content">In April 2024, the Manala Foundation successfully implemented its scholarship support program. A total of 18 students from economically disadvantaged households benefited, ensuring their children could continue pursuing education without the burden of financial hardship. The scholarship specifically supported students enrolled at Nyandekwa Secondary School and Isagehe Secondary School.</p>
+                        <p id="success2-content2">The assistance covered essential school-related expenses, enabling the students to attend classes consistently and focus on their academic goals. This intervention reflects the Foundation's ongoing commitment to promoting equal access to quality education and breaking the cycle of poverty through empowerment.</p>
                         <div class="success-image-box">
-                            <img src="picha2.jpg" alt="Scholarship Support Program" loading="lazy" decoding="async">
+                            <img src="picha2.jpg" alt="Scholarship Support Program" loading="lazy" decoding="async" id="success2-image">
                         </div>
                     </div>
                 </div>
@@ -732,7 +779,7 @@
     <section id="gallery" style="background-color: var(--bg-light);">
         <div class="container">
             <h2 class="section-title">Impact Gallery: See Our Work in Action</h2>
-            <div class="gallery-grid-unique">
+            <div class="gallery-grid-unique" id="gallery-container">
                 <div class="gallery-item-unique">
                     <img src="gallery1.jpg" alt="Gallery Image 1 - Education Support" loading="lazy" decoding="async">
                 </div>
@@ -749,29 +796,29 @@
     <section id="contact-us-main" style="background-color: var(--light-color); color: var(--dark-color);">
         <div class="container">
             <div class="contact-info-col" style="color: var(--dark-color);">
-                <h2 style="color: var(--primary-color);">Let's Start a Conversation!</h2>
-                <p>Have a question, a project proposal, or wish to volunteer? Reach out directly. We welcome all forms of collaboration.</p>
+                <h2 style="color: var(--primary-color);" id="contact-title">Let's Start a Conversation!</h2>
+                <p id="contact-description">Have a question, a project proposal, or wish to volunteer? Reach out directly. We welcome all forms of collaboration.</p>
                 
                 <div class="contact-detail-item">
                     <i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i>
-                    <span>Kagongwa, Kahama, Shinyanga, Tanzania</span>
+                    <span id="contact-address">Kagongwa, Kahama, Shinyanga, Tanzania</span>
                 </div>
                 <div class="contact-detail-item">
                     <i class="fas fa-envelope" style="color: var(--primary-color);"></i>
-                    <span>info@manalafnd.org</span>
+                    <span id="contact-email">info@manalafnd.org</span>
                 </div>
                 <div class="contact-detail-item">
                     <i class="fas fa-phone-alt" style="color: var(--primary-color);"></i>
-                    <span>+255 760 244 679</span>
+                    <span id="contact-phone">+255 760 244 679</span>
                 </div>
                 <div class="contact-detail-item">
                     <i class="fas fa-file-alt" style="color: var(--primary-color);"></i>
-                    <span>Registration No: 00NGO/R/7079 (since 26/07/2024)</span>
+                    <span id="contact-registration">Registration No: 00NGO/R/7079 (since 26/07/2024)</span>
                 </div>
             </div>
             
             <div class="contact-form-col">
-                <h3>Send Us a Message</h3>
+                <h3 id="contact-form-title">Send Us a Message</h3>
                 <form action="YOUR_BACKEND_SCRIPT_URL" method="POST">
                     <input type="text" placeholder="Full Name *" required>
                     <input type="email" placeholder="Email Address *" required>
@@ -789,7 +836,7 @@
         href="https://wa.me/255765374146?text=Hello%20Manala%20Foundation,%20I%20would%20like%20to%20partner%20with%20you%20regarding..." 
         class="whatsapp-float" 
         target="_blank" 
-        title="Chat with us on WhatsApp">
+        title="Chat with us on WhatsApp" id="whatsapp-link">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -814,9 +861,9 @@
                 <div class="footer-col">
                     <h4>Contact Channels</h4>
                     <ul>
-                        <li><a href="https://wa.me/255765374146" target="_blank">WhatsApp: +255 765 374 146</a></li>
-                        <li>Email: info@manalafnd.org</li>
-                        <li>Mobile: +255 760 244 679</li>
+                        <li><a href="https://wa.me/255765374146" target="_blank" id="footer-whatsapp">WhatsApp: +255 765 374 146</a></li>
+                        <li id="footer-email">Email: info@manalafnd.org</li>
+                        <li id="footer-phone">Mobile: +255 760 244 679</li>
                     </ul>
                     <div class="social-icons">
                         <a href="https://www.instagram.com/manala_foundation1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -827,9 +874,9 @@
                 <div class="footer-col">
                     <h4>Leadership & Address</h4>
                     <p><strong>Chairperson:</strong> Dr. Manala Mbumba</p>
-                    <p style="margin-top: 5px;"><strong>Chair Email:</strong> mtmbumba@gmail.com</p>
-                    <p style="margin-top: 15px;">Kagongwa, Kahama, Shinyanga.</p>
-                    <p style="margin-top: 5px;">Registration No: 00NGO/R/7079</p>
+                    <p style="margin-top: 5px;"><strong>Chair Email:</strong> <span id="chair-email">mtmbumba@gmail.com</span></p>
+                    <p style="margin-top: 15px;" id="footer-address">Kagongwa, Kahama, Shinyanga.</p>
+                    <p style="margin-top: 5px;" id="footer-registration">Registration No: 00NGO/R/7079</p>
                 </div>
             </div>
 
@@ -852,7 +899,10 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // === LOAD SAVED DATA FROM LOCALSTORAGE ===
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedData();
+            
             // ------------------ THEME TOGGLE LOGIC ------------------
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = themeToggle.querySelector('i');
@@ -921,6 +971,97 @@
                 firstContent.style.maxHeight = firstContent.scrollHeight + "px";
             }
         });
+
+        // Function to load saved data from localStorage
+        function loadSavedData() {
+            // Load hero section data
+            const heroData = localStorage.getItem('heroData');
+            if (heroData) {
+                const data = JSON.parse(heroData);
+                if (data.title) document.getElementById('hero-title').textContent = data.title;
+                if (data.description) document.getElementById('hero-description').textContent = data.description;
+            }
+
+            // Load about section data
+            const aboutData = localStorage.getItem('aboutData');
+            if (aboutData) {
+                const data = JSON.parse(aboutData);
+                if (data.aboutText) document.getElementById('about-text').textContent = data.aboutText;
+                if (data.vision) document.getElementById('vision-text').textContent = data.vision;
+                if (data.mission) document.getElementById('mission-text').textContent = data.mission;
+                if (data.values) document.getElementById('values-text').textContent = data.values;
+                if (data.coreIdentityTitle) document.getElementById('core-identity-title').textContent = data.coreIdentityTitle;
+                if (data.visionTitle) document.getElementById('vision-title').textContent = data.visionTitle;
+                if (data.missionTitle) document.getElementById('mission-title').textContent = data.missionTitle;
+                if (data.valuesTitle) document.getElementById('values-title').textContent = data.valuesTitle;
+            }
+
+            // Load programs data
+            const programsData = localStorage.getItem('programsData');
+            if (programsData) {
+                const data = JSON.parse(programsData);
+                if (data.program1Title) document.getElementById('program1-title').textContent = data.program1Title;
+                if (data.program1Desc) document.getElementById('program1-desc').textContent = data.program1Desc;
+                if (data.program2Title) document.getElementById('program2-title').textContent = data.program2Title;
+                if (data.program2Desc) document.getElementById('program2-desc').textContent = data.program2Desc;
+                if (data.program3Title) document.getElementById('program3-title').textContent = data.program3Title;
+                if (data.program3Desc) document.getElementById('program3-desc').textContent = data.program3Desc;
+                if (data.program4Title) document.getElementById('program4-title').textContent = data.program4Title;
+                if (data.program4Desc) document.getElementById('program4-desc').textContent = data.program4Desc;
+                if (data.programsTitle) document.getElementById('programs-title').textContent = data.programsTitle;
+            }
+
+            // Load success stories data
+            const successesData = localStorage.getItem('successesData');
+            if (successesData) {
+                const data = JSON.parse(successesData);
+                if (data.success1Title) document.getElementById('success1-title').textContent = data.success1Title;
+                if (data.success1Content) {
+                    const contentParts = data.success1Content.split('\n\n');
+                    document.getElementById('success1-content').textContent = contentParts[0] || '';
+                    document.getElementById('success1-content2').textContent = contentParts[1] || '';
+                }
+                if (data.success2Title) document.getElementById('success2-title').textContent = data.success2Title;
+                if (data.success2Content) {
+                    const contentParts = data.success2Content.split('\n\n');
+                    document.getElementById('success2-content').textContent = contentParts[0] || '';
+                    document.getElementById('success2-content2').textContent = contentParts[1] || '';
+                }
+            }
+
+            // Load contact info data
+            const contactData = localStorage.getItem('contactData');
+            if (contactData) {
+                const data = JSON.parse(contactData);
+                if (data.address) {
+                    document.getElementById('contact-address').textContent = data.address;
+                    document.getElementById('footer-address').textContent = data.address;
+                }
+                if (data.email) {
+                    document.getElementById('contact-email').textContent = data.email;
+                    document.getElementById('footer-email').textContent = `Email: ${data.email}`;
+                }
+                if (data.phone) {
+                    document.getElementById('contact-phone').textContent = data.phone;
+                    document.getElementById('footer-phone').textContent = `Mobile: ${data.phone}`;
+                }
+                if (data.registration) {
+                    document.getElementById('contact-registration').textContent = data.registration;
+                    document.getElementById('footer-registration').textContent = data.registration;
+                }
+                if (data.chairpersonEmail) {
+                    document.getElementById('chair-email').textContent = data.chairpersonEmail;
+                }
+                if (data.whatsapp) {
+                    document.getElementById('footer-whatsapp').textContent = `WhatsApp: ${data.whatsapp}`;
+                    document.getElementById('footer-whatsapp').href = `https://wa.me/${data.whatsapp.replace(/\D/g, '')}`;
+                    document.getElementById('whatsapp-link').href = `https://wa.me/${data.whatsapp.replace(/\D/g, '')}?text=Hello%20Manala%20Foundation,%20I%20would%20like%20to%20partner%20with%20you%20regarding...`;
+                }
+                if (data.contactTitle) document.getElementById('contact-title').textContent = data.contactTitle;
+                if (data.contactDescription) document.getElementById('contact-description').textContent = data.contactDescription;
+                if (data.contactFormTitle) document.getElementById('contact-form-title').textContent = data.contactFormTitle;
+            }
+        }
     </script>
 </body>
 </html>
